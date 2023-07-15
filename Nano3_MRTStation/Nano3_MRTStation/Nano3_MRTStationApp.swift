@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct CLPlaygroundApp: App {
+struct Nano3_MRTStationApp: App {
     @StateObject private var locationManager = LocationDataManager()
     @StateObject private var discoveryVM = DiscoveryViewModel()
 

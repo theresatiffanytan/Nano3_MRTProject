@@ -43,6 +43,7 @@ class DiscoveryViewModel: ObservableObject {
     }
     
     func updateIsSameFloor() -> () {
+        // MARK: -- Problem if the floor level is more than 2
         isSameFloor = locationManager.currentLocation.toLocation().floorLevel == destinations.first?.location.floorLevel
     }
 }

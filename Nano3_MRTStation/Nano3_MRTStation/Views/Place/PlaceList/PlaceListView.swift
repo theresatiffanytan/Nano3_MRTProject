@@ -9,21 +9,29 @@ import SwiftUI
 
 struct PlaceListView: View {
     @EnvironmentObject var discoveryVM: DiscoveryViewModel
+    @EnvironmentObject var locationManager: LocationDataManager
+    let category: Place.PlaceCategory
 
     var body: some View {
-        List(discoveryVM.currentStation.places, id: \.id) { place in
+        List(discoveryVM.getPlacesFiltered(by: category), id: \.self) { place in
             NavigationLink(
                 destination: CompassView(targetPlace: place)) {
-                    PlaceListRow(place: place)
+                    PlaceListItem(place: place)
                 }
         }
-        .navigationTitle(discoveryVM.currentStation.name)
+        .onAppear {
+            locationManager.validateLocationAuthorizationStatus()
+        }
+        .onDisappear {
+            locationManager.stopUpdatingLocation()
+        }
     }
 }
 
 struct PlaceListView_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceListView()
+        PlaceListView(category: .shops)
             .environmentObject(DiscoveryViewModel())
+            .environmentObject(LocationDataManager())
     }
 }

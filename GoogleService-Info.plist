@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>146507696446-ubjhav5fi4v4j0ct8hvjtagqvoooluti.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.146507696446-ubjhav5fi4v4j0ct8hvjtagqvoooluti</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCRPWpCzXOM-CnGFB_B2VOJ5b7rDr32ZUQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>146507696446</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Tiffany.Nano3-MRTStation</string>
+	<key>PROJECT_ID</key>
+	<string>nano3-59112</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nano3-59112.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:146507696446:ios:e631c0af9618961901c46f</string>
+</dict>
+</plist>

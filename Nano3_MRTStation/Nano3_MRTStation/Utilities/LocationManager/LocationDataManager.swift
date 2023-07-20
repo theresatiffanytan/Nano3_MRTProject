@@ -9,6 +9,8 @@ import CoreLocation
 import UserNotifications
 
 class LocationDataManager: NSObject, ObservableObject {
+    static let shared = LocationDataManager()
+
     private let locationManager = CLLocationManager()
     var targetLocation = CLLocation()
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined

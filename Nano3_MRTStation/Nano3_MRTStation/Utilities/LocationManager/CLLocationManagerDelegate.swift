@@ -24,6 +24,7 @@ extension LocationDataManager: CLLocationManagerDelegate {
         
         distance = currentLocation.distance(from: targetLocation)
         distanceDesc = formatDistance(distance)
+        print(distanceDesc)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {

@@ -10,18 +10,27 @@
 		0FB4BEFE2A62EA730009D00C /* Nano3_MRTStationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB4BEFD2A62EA730009D00C /* Nano3_MRTStationApp.swift */; };
 		0FB4BF022A62EA730009D00C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FB4BF012A62EA730009D00C /* Assets.xcassets */; };
 		0FB4BF052A62EA730009D00C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FB4BF042A62EA730009D00C /* Preview Assets.xcassets */; };
+		C404D3CA2A692D2400D149AC /* PlaceCategoryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404D3C92A692D2400D149AC /* PlaceCategoryGridView.swift */; };
+		C404D3CD2A69332700D149AC /* PlaceCategoryGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404D3CC2A69332700D149AC /* PlaceCategoryGridItem.swift */; };
+		C41A43172A68AE5D000E9B3A /* AddPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A43162A68AE5D000E9B3A /* AddPlaceView.swift */; };
+		C44E1AF92A68A62D00F9D5B0 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E1AF82A68A62D00F9D5B0 /* FirestoreManager.swift */; };
+		C44E1AFC2A68A77F00F9D5B0 /* StationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E1AFB2A68A77F00F9D5B0 /* StationRepository.swift */; };
+		C44E1AFE2A68A88300F9D5B0 /* Compass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E1AFD2A68A88300F9D5B0 /* Compass.swift */; };
 		C4C6A3B52A62F14D000D18D8 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A52A62F14D000D18D8 /* LocationDataManager.swift */; };
 		C4C6A3B62A62F14D000D18D8 /* CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A62A62F14D000D18D8 /* CLLocationManagerDelegate.swift */; };
 		C4C6A3B72A62F14D000D18D8 /* DiscoveryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A82A62F14D000D18D8 /* DiscoveryViewModel.swift */; };
 		C4C6A3B82A62F14D000D18D8 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3AA2A62F14D000D18D8 /* CompassView.swift */; };
-		C4C6A3B92A62F14D000D18D8 /* LocationAuthStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3AB2A62F14D000D18D8 /* LocationAuthStateView.swift */; };
-		C4C6A3BA2A62F14D000D18D8 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3AC2A62F14D000D18D8 /* LocationView.swift */; };
+		C4C6A3B92A62F14D000D18D8 /* LocationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3AB2A62F14D000D18D8 /* LocationStateView.swift */; };
 		C4C6A3BB2A62F14D000D18D8 /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3AE2A62F14D000D18D8 /* PlaceListView.swift */; };
 		C4C6A3BC2A62F14D000D18D8 /* PlaceListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3AF2A62F14D000D18D8 /* PlaceListRow.swift */; };
 		C4C6A3BD2A62F14D000D18D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3B02A62F14D000D18D8 /* ContentView.swift */; };
 		C4C6A3BE2A62F14D000D18D8 /* location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3B22A62F14D000D18D8 /* location.swift */; };
 		C4C6A3BF2A62F14D000D18D8 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3B32A62F14D000D18D8 /* Place.swift */; };
 		C4C6A3C02A62F14D000D18D8 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3B42A62F14D000D18D8 /* Station.swift */; };
+		C4EA02492A67629F00DF0013 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA02482A67629F00DF0013 /* FirebaseFirestore */; };
+		C4EA024B2A67629F00DF0013 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA024A2A67629F00DF0013 /* FirebaseFirestoreSwift */; };
+		C4EA02522A67747800DF0013 /* MockStationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA02512A67747800DF0013 /* MockStationRepository.swift */; };
+		DD0748702A696E8500AF5AFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD07486F2A696E8500AF5AFF /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,19 +38,26 @@
 		0FB4BEFD2A62EA730009D00C /* Nano3_MRTStationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nano3_MRTStationApp.swift; sourceTree = "<group>"; };
 		0FB4BF012A62EA730009D00C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0FB4BF042A62EA730009D00C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C404D3C92A692D2400D149AC /* PlaceCategoryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCategoryGridView.swift; sourceTree = "<group>"; };
+		C404D3CC2A69332700D149AC /* PlaceCategoryGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCategoryGridItem.swift; sourceTree = "<group>"; };
+		C41A43162A68AE5D000E9B3A /* AddPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceView.swift; sourceTree = "<group>"; };
 		C42091EC2A62EE4700009BAA /* Nano3-MRTStation-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Nano3-MRTStation-Info.plist"; sourceTree = SOURCE_ROOT; };
+		C44E1AF82A68A62D00F9D5B0 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		C44E1AFB2A68A77F00F9D5B0 /* StationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRepository.swift; sourceTree = "<group>"; };
+		C44E1AFD2A68A88300F9D5B0 /* Compass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compass.swift; sourceTree = "<group>"; };
 		C4C6A3A52A62F14D000D18D8 /* LocationDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataManager.swift; sourceTree = "<group>"; };
 		C4C6A3A62A62F14D000D18D8 /* CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationManagerDelegate.swift; sourceTree = "<group>"; };
 		C4C6A3A82A62F14D000D18D8 /* DiscoveryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryViewModel.swift; sourceTree = "<group>"; };
 		C4C6A3AA2A62F14D000D18D8 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
-		C4C6A3AB2A62F14D000D18D8 /* LocationAuthStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAuthStateView.swift; sourceTree = "<group>"; };
-		C4C6A3AC2A62F14D000D18D8 /* LocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		C4C6A3AB2A62F14D000D18D8 /* LocationStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStateView.swift; sourceTree = "<group>"; };
 		C4C6A3AE2A62F14D000D18D8 /* PlaceListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceListView.swift; sourceTree = "<group>"; };
 		C4C6A3AF2A62F14D000D18D8 /* PlaceListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceListRow.swift; sourceTree = "<group>"; };
 		C4C6A3B02A62F14D000D18D8 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C4C6A3B22A62F14D000D18D8 /* location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = location.swift; sourceTree = "<group>"; };
 		C4C6A3B32A62F14D000D18D8 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C4C6A3B42A62F14D000D18D8 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		C4EA02512A67747800DF0013 /* MockStationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStationRepository.swift; sourceTree = "<group>"; };
+		DD07486F2A696E8500AF5AFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4EA02492A67629F00DF0013 /* FirebaseFirestore in Frameworks */,
+				C4EA024B2A67629F00DF0013 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,11 +92,13 @@
 		0FB4BEFC2A62EA730009D00C /* Nano3_MRTStation */ = {
 			isa = PBXGroup;
 			children = (
+				DD07486F2A696E8500AF5AFF /* GoogleService-Info.plist */,
 				C42091EC2A62EE4700009BAA /* Nano3-MRTStation-Info.plist */,
 				0FB4BEFD2A62EA730009D00C /* Nano3_MRTStationApp.swift */,
 				C4C6A3B12A62F14D000D18D8 /* Models */,
 				C4C6A3A92A62F14D000D18D8 /* Views */,
 				C4C6A3A72A62F14D000D18D8 /* ViewModels */,
+				C44E1AFA2A68A76B00F9D5B0 /* Repository */,
 				C4C6A3A32A62F14D000D18D8 /* Utilities */,
 				0FB4BF012A62EA730009D00C /* Assets.xcassets */,
 				0FB4BF032A62EA730009D00C /* Preview Content */,
@@ -90,13 +110,73 @@
 			isa = PBXGroup;
 			children = (
 				0FB4BF042A62EA730009D00C /* Preview Assets.xcassets */,
+				C4EA02512A67747800DF0013 /* MockStationRepository.swift */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C404D3CB2A692D3B00D149AC /* PlaceCategory */ = {
+			isa = PBXGroup;
+			children = (
+				C404D3C92A692D2400D149AC /* PlaceCategoryGridView.swift */,
+				C404D3CC2A69332700D149AC /* PlaceCategoryGridItem.swift */,
+			);
+			path = PlaceCategory;
+			sourceTree = "<group>";
+		};
+		C404D3CE2A69346500D149AC /* PlaceList */ = {
+			isa = PBXGroup;
+			children = (
+				C4C6A3AE2A62F14D000D18D8 /* PlaceListView.swift */,
+				C4C6A3AF2A62F14D000D18D8 /* PlaceListRow.swift */,
+			);
+			path = PlaceList;
+			sourceTree = "<group>";
+		};
+		C41A43182A68AEA8000E9B3A /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				C4C6A3AB2A62F14D000D18D8 /* LocationStateView.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
+		C41A43192A68AEC5000E9B3A /* DebugOnly */ = {
+			isa = PBXGroup;
+			children = (
+				C41A43162A68AE5D000E9B3A /* AddPlaceView.swift */,
+			);
+			path = DebugOnly;
+			sourceTree = "<group>";
+		};
+		C41A431A2A68AEDF000E9B3A /* Compass */ = {
+			isa = PBXGroup;
+			children = (
+				C4C6A3AA2A62F14D000D18D8 /* CompassView.swift */,
+			);
+			path = Compass;
+			sourceTree = "<group>";
+		};
+		C44E1AF72A68A61A00F9D5B0 /* FirestoreManager */ = {
+			isa = PBXGroup;
+			children = (
+				C44E1AF82A68A62D00F9D5B0 /* FirestoreManager.swift */,
+			);
+			path = FirestoreManager;
+			sourceTree = "<group>";
+		};
+		C44E1AFA2A68A76B00F9D5B0 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				C44E1AFB2A68A77F00F9D5B0 /* StationRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		C4C6A3A32A62F14D000D18D8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C44E1AF72A68A61A00F9D5B0 /* FirestoreManager */,
 				C4C6A3A42A62F14D000D18D8 /* LocationManager */,
 			);
 			path = Utilities;
@@ -122,11 +202,11 @@
 		C4C6A3A92A62F14D000D18D8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C4C6A3AA2A62F14D000D18D8 /* CompassView.swift */,
-				C4C6A3AB2A62F14D000D18D8 /* LocationAuthStateView.swift */,
-				C4C6A3AC2A62F14D000D18D8 /* LocationView.swift */,
-				C4C6A3AD2A62F14D000D18D8 /* Place */,
 				C4C6A3B02A62F14D000D18D8 /* ContentView.swift */,
+				C41A431A2A68AEDF000E9B3A /* Compass */,
+				C41A43182A68AEA8000E9B3A /* Reusable */,
+				C4C6A3AD2A62F14D000D18D8 /* Place */,
+				C41A43192A68AEC5000E9B3A /* DebugOnly */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -134,8 +214,8 @@
 		C4C6A3AD2A62F14D000D18D8 /* Place */ = {
 			isa = PBXGroup;
 			children = (
-				C4C6A3AE2A62F14D000D18D8 /* PlaceListView.swift */,
-				C4C6A3AF2A62F14D000D18D8 /* PlaceListRow.swift */,
+				C404D3CB2A692D3B00D149AC /* PlaceCategory */,
+				C404D3CE2A69346500D149AC /* PlaceList */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -146,6 +226,7 @@
 				C4C6A3B22A62F14D000D18D8 /* location.swift */,
 				C4C6A3B32A62F14D000D18D8 /* Place.swift */,
 				C4C6A3B42A62F14D000D18D8 /* Station.swift */,
+				C44E1AFD2A68A88300F9D5B0 /* Compass.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -166,6 +247,10 @@
 			dependencies = (
 			);
 			name = Nano3_MRTStation;
+			packageProductDependencies = (
+				C4EA02482A67629F00DF0013 /* FirebaseFirestore */,
+				C4EA024A2A67629F00DF0013 /* FirebaseFirestoreSwift */,
+			);
 			productName = Nano3_MRTStation;
 			productReference = 0FB4BEFA2A62EA730009D00C /* Nano3_MRTStation.app */;
 			productType = "com.apple.product-type.application";
@@ -194,6 +279,9 @@
 				Base,
 			);
 			mainGroup = 0FB4BEF12A62EA730009D00C;
+			packageReferences = (
+				C4EA02472A67629F00DF0013 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 0FB4BEFB2A62EA730009D00C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -210,6 +298,7 @@
 			files = (
 				0FB4BF052A62EA730009D00C /* Preview Assets.xcassets in Resources */,
 				0FB4BF022A62EA730009D00C /* Assets.xcassets in Resources */,
+				DD0748702A696E8500AF5AFF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,17 +309,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C404D3CA2A692D2400D149AC /* PlaceCategoryGridView.swift in Sources */,
+				C41A43172A68AE5D000E9B3A /* AddPlaceView.swift in Sources */,
 				C4C6A3B62A62F14D000D18D8 /* CLLocationManagerDelegate.swift in Sources */,
+				C44E1AF92A68A62D00F9D5B0 /* FirestoreManager.swift in Sources */,
 				C4C6A3BC2A62F14D000D18D8 /* PlaceListRow.swift in Sources */,
-				C4C6A3B92A62F14D000D18D8 /* LocationAuthStateView.swift in Sources */,
+				C4C6A3B92A62F14D000D18D8 /* LocationStateView.swift in Sources */,
+				C44E1AFC2A68A77F00F9D5B0 /* StationRepository.swift in Sources */,
 				C4C6A3BF2A62F14D000D18D8 /* Place.swift in Sources */,
 				C4C6A3BE2A62F14D000D18D8 /* location.swift in Sources */,
+				C44E1AFE2A68A88300F9D5B0 /* Compass.swift in Sources */,
 				C4C6A3C02A62F14D000D18D8 /* Station.swift in Sources */,
 				C4C6A3BB2A62F14D000D18D8 /* PlaceListView.swift in Sources */,
 				C4C6A3B52A62F14D000D18D8 /* LocationDataManager.swift in Sources */,
 				C4C6A3B82A62F14D000D18D8 /* CompassView.swift in Sources */,
+				C4EA02522A67747800DF0013 /* MockStationRepository.swift in Sources */,
 				C4C6A3BD2A62F14D000D18D8 /* ContentView.swift in Sources */,
-				C4C6A3BA2A62F14D000D18D8 /* LocationView.swift in Sources */,
+				C404D3CD2A69332700D149AC /* PlaceCategoryGridItem.swift in Sources */,
 				0FB4BEFE2A62EA730009D00C /* Nano3_MRTStationApp.swift in Sources */,
 				C4C6A3B72A62F14D000D18D8 /* DiscoveryViewModel.swift in Sources */,
 			);
@@ -443,6 +538,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C4EA02472A67629F00DF0013 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C4EA02482A67629F00DF0013 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4EA02472A67629F00DF0013 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		C4EA024A2A67629F00DF0013 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4EA02472A67629F00DF0013 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0FB4BEF22A62EA730009D00C /* Project object */;
 }

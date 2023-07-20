@@ -9,6 +9,8 @@ import CoreLocation
 import UserNotifications
 
 class LocationDataManager: NSObject, ObservableObject {
+    static let shared = LocationDataManager()
+
     private let locationManager = CLLocationManager()
     var targetLocation = CLLocation()
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
@@ -88,3 +90,10 @@ class LocationDataManager: NSObject, ObservableObject {
         locationManager.stopMonitoring(for: storeRegion)
     }
 }
+
+extension CLLocation {
+    func toLocation() -> Location {
+        return Location(latitude: self.coordinate.latitude, longitude: self.coordinate.longitude, altitude: self.altitude)
+    }
+}
+

@@ -16,13 +16,11 @@ struct CompassView: View {
             content
         }
         .onAppear {
-            locationManager.validateLocationAuthorizationStatus()
             locationManager.startHeadingUpdates()
             locationManager.startMonitoringRegion(center: targetPlace.location.toCLLocation(), identifier: targetPlace.name)
         }
         .onDisappear {
             locationManager.stopUpdatingHeading()
-            locationManager.stopUpdatingLocation()
         }
     }
 

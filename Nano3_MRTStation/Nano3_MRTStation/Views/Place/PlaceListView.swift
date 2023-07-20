@@ -70,10 +70,8 @@ struct PlaceListView: View {
                     Spacer()
                 }
             }
-            
         }
         .padding(.horizontal, 20)
-        
     }
 }
 

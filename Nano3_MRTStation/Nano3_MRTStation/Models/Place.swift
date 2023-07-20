@@ -18,9 +18,9 @@ struct Place: Identifiable {
 //    var openHours: Time
     
     enum Status: String {
-        case closed = "Closed", open = "Open", outofservice = "OutOfService"
+        case closed = "Closed", open = "Open", escalatorUp = "Up", escalatorDown = "Down"
     }
-
+    
     enum PlaceCategory: String {
         case amenities = "Amenities"
         case eateries = "Eateries"

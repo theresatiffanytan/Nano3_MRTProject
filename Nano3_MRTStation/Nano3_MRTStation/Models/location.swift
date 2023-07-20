@@ -25,6 +25,20 @@ extension Location {
         }
         return defaultFloorLevel
     }
+    
+    func formattedFloorLevel() -> String {
+        if floorLevel == 1 {
+            return String(floorLevel) + "st Floor"
+        }else if floorLevel == 2{
+            return String(floorLevel) + "nd Floor"
+        }else {
+            return String(floorLevel) + "rd Floor"
+        }
+    }
+    
+    func getDistance() -> Int {
+        return 100
+    }
 
     func toCLLocation() -> CLLocation {
         return CLLocation(

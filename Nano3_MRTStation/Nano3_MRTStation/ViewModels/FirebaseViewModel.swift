@@ -53,9 +53,6 @@ class FirebaseViewModel: ObservableObject {
                     
                 }
                 
-                
-                
-                
             }
             
         }

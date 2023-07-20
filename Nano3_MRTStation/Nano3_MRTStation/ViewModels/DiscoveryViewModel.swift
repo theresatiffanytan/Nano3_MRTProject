@@ -12,6 +12,7 @@ class DiscoveryViewModel: ObservableObject {
     @Published var currentStation = Station.dummyStations[0]
     @Published var destinations: [Place] = []
     @Published var isSameFloor: Bool = false
+    // ambil escalator turun masukin ke detourPlace
     @Published var detourPlace: Place? = nil
     var locationManager: LocationDataManager
     
@@ -46,4 +47,6 @@ class DiscoveryViewModel: ObservableObject {
         // MARK: -- Problem if the floor level is more than 2
         isSameFloor = locationManager.currentLocation.toLocation().floorLevel == destinations.first?.location.floorLevel
     }
+    
+    
 }

@@ -40,6 +40,7 @@ extension LocationDataManager: CLLocationManagerDelegate {
         print("⚠️ Error while updating location: \(error.localizedDescription)")
     }
     
+    #if os(iOS)
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         guard let region = region as? CLCircularRegion else { return }
         didArriveAtTakeout = true
@@ -51,6 +52,7 @@ extension LocationDataManager: CLLocationManagerDelegate {
         print("User leave \(region.identifier)")
     }
     
+   
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
         guard let region = region else {
             print("The region could not be monitored, and the reason for the failure is not known.")
@@ -58,7 +60,7 @@ extension LocationDataManager: CLLocationManagerDelegate {
         }
         print("⚠️ Error in monitoring the region with a identifier: \(region.identifier)")
     }
-    
+#endif
     private func calculateTargetBearing() -> Double {
         let deltaLongitude = targetLocation.coordinate.longitude.radians - currentLocation.coordinate.longitude.radians
         let thetaB = targetLocation.coordinate.latitude.radians

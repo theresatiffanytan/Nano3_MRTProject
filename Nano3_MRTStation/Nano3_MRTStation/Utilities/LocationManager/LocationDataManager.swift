@@ -70,6 +70,7 @@ class LocationDataManager: NSObject, ObservableObject {
         locationManager.stopUpdatingHeading()
     }
 
+    #if os(iOS)
     func startMonitoringRegion(center: CLLocation, identifier: String) {
         targetLocation = center
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
@@ -89,6 +90,7 @@ class LocationDataManager: NSObject, ObservableObject {
         guard let storeRegion = storeRegion else { return }
         locationManager.stopMonitoring(for: storeRegion)
     }
+    #endif
 }
 
 extension CLLocation {

@@ -21,6 +21,7 @@ enum ViewType: String {
 struct PlaceListView: View {
     @EnvironmentObject var discoveryVM: DiscoveryViewModel
     @EnvironmentObject var locationManager: LocationDataManager
+    @ObservedObject var watchvm = WatchViewModel.shared
     
     // Perubahan Abner
     @State var detourPreference: Services? = nil
@@ -47,9 +48,13 @@ struct PlaceListView: View {
                 ScrollView {
                     ForEach(discoveryVM.getPlacesFiltered(by: category), id: \.self) { place in
                         NavigationLink(destination: DetailView(isSameFloor: discoveryVM.isSameFloor, targetPlace: place, detourPreference: $detourPreference)
-                            .onAppear{discoveryVM.appendDestination(to: place)}
+                            .onAppear{discoveryVM.appendDestination(to: place)
+                                watchvm.sendPlaceToWatch(place)
+                                
+                            }
                             .onDisappear{discoveryVM.clearDestination()}) {
                                 PlaceListItem(place: place)
+                                
                             }
                     }
                 }

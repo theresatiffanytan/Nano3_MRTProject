@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CompassView: View {
+    @Binding var isShowing : Bool
     let targetPlace: Place
     @EnvironmentObject var locationManager: LocationDataManager
 
@@ -54,7 +55,7 @@ struct CompassView: View {
 
 struct CompassView_Previews: PreviewProvider {
     static var previews: some View {
-        CompassView(targetPlace: Place.dummyPlace[0])
+        CompassView(isShowing: .constant(true), targetPlace: Place.dummyPlace[0])
             .environmentObject(LocationDataManager())
     }
 }

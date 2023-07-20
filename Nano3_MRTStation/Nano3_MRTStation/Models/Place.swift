@@ -38,7 +38,7 @@ extension Place {
             description: "Restroom description",
             photo: "restroom-photo",
             category: .amenities,
-            location: Location(latitude: -6.196751, longitude: 106.822984, altitude: 0)
+            location: Location(latitude: -6.301569, longitude: 106.650573, altitude: 0)
         ),
         Place(
             name: "Eatery 1",

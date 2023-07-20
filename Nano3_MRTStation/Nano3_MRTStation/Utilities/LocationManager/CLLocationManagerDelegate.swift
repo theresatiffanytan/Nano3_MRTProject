@@ -38,7 +38,7 @@ extension LocationDataManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("⚠️ Error while updating location: \(error.localizedDescription)")
     }
-    
+#if os(iOS)
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         guard let region = region as? CLCircularRegion else { return }
         didArriveAtTakeout = true
@@ -57,7 +57,7 @@ extension LocationDataManager: CLLocationManagerDelegate {
         }
         print("⚠️ Error in monitoring the region with a identifier: \(region.identifier)")
     }
-    
+#endif
     private func calculateTargetBearing() -> Double {
         let deltaLongitude = targetLocation.coordinate.longitude.radians - currentLocation.coordinate.longitude.radians
         let thetaB = targetLocation.coordinate.latitude.radians

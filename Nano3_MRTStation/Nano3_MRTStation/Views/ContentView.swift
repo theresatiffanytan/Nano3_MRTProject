@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import WatchConnectivity
 
 struct ContentView: View {
     var body: some View {
         NavigationStack {
             PlaceListView()
+//            TestView()
         }
     }
 }
@@ -18,7 +20,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(DiscoveryViewModel())
+//            .environmentObject(DiscoveryViewModel())
     }
 }
 

@@ -7,21 +7,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    #if DEBUG
     @State private var showPlaceView = false
-    #endif
 
     var body: some View {
         NavigationStack {
             PlaceCategoryGridView()
-                #if DEBUG
                 .onLongPressGesture(minimumDuration: 3) {
                     showPlaceView.toggle()
                 }
                 .sheet(isPresented: $showPlaceView) {
                     AddPlaceView()
                 }
-                #endif
         }
     }
 }

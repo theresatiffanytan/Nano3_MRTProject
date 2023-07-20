@@ -19,16 +19,44 @@ struct Place: Hashable, Codable {
     enum PlaceCategory: String, Codable, CaseIterable {
         case amenities = "Amenities"
         case eateries = "Eateries"
-        case shops = "Shops"
-        case exits = "Exit Gates"
-        case counters = "Ticketing Counters"
-        case information = "Information"
-        case platforms = "Platforms"
-        case parking = "Parking"
-        case elevators = "Elevators"
-        case escalators = "Escalators"
-        case stairs = "Stairs"
+        case escalator = "Escalator, lift"
+        case commercial = "Commercial area"
+        case toilet = "Toilet"
+        case mushalla = "Mushalla"
+        case firstaid = "First aid"
+        case nursing = "Nursing room"
+        case ticket = "Ticket machine"
+        case service = "Service office"
+        case disability = "Disability facilities"
+
+        var icon: String {
+            switch self {
+            case .amenities:
+                return "amenities-icon"
+            case .eateries:
+                return "eateries-icon"
+            case .escalator:
+                return "escalator"
+            case .commercial:
+                return "coffee-cup 1"
+            case .toilet:
+                return "toilet 1"
+            case .mushalla:
+                return "mosque 1"
+            case .firstaid:
+                return "first-aid-kit 1"
+            case .nursing:
+                return "pacifier-2 1"
+            case .ticket:
+                return "atm-card 1"
+            case .service:
+                return "office 1"
+            case .disability:
+                return "wheelchair 1"
+            }
+        }
     }
+
 
     enum PlaceStatus: String, Codable, CaseIterable {
         case open = "Open"
@@ -72,7 +100,7 @@ extension Place {
             name: "Shop 1",
             description: "Shop description",
             photo: "shop-photo",
-            category: .shops,
+            category: .commercial,
             status: .open,
             location: Location(latitude: -6.196753, longitude: 106.822986, altitude: 0)
         ),
@@ -80,7 +108,7 @@ extension Place {
             name: "Exit Gate 1",
             description: "Exit Gate description",
             photo: "exit-gate-photo",
-            category: .exits,
+            category: .service,
             status: .open,
             location: Location(latitude: -6.196754, longitude: 106.822987, altitude: 0)
         ),
@@ -88,7 +116,7 @@ extension Place {
             name: "Ticketing Counter 1",
             description: "Ticketing Counter description",
             photo: "ticketing-counter-photo",
-            category: .counters,
+            category: .ticket,
             status: .open,
             location: Location(latitude: -6.196755, longitude: 106.822988, altitude: 0)
         ),

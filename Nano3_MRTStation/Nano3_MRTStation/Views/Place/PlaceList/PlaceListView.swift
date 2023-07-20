@@ -89,7 +89,7 @@ struct PlaceListView: View {
 
 struct PlaceListView_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceListView(category: .shops)
+        PlaceListView(category: .commercial)
             .environmentObject(DiscoveryViewModel())
             .environmentObject(LocationDataManager())
     }

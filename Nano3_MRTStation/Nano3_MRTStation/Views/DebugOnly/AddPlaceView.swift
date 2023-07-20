@@ -17,7 +17,7 @@ struct AddPlaceView: View {
     @EnvironmentObject private var discoveryVM: DiscoveryViewModel
     @State private var name: String = ""
     @State private var desc: String = ""
-    @State private var category: Place.PlaceCategory = .shops
+    @State private var category: Place.PlaceCategory = .commercial
     @State private var status: Place.PlaceStatus = .open
     @State private var latitudeText: String = ""
     @State private var longitudeText: String = ""

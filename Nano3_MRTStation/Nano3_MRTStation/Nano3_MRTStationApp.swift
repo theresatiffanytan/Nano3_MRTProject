@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct Nano3_MRTStationApp: App {
-    @StateObject private var locationManager = LocationDataManager()
-    @StateObject private var discoveryVM = DiscoveryViewModel()
-
+    @StateObject private var locationManager: LocationDataManager
+    @StateObject private var discoveryVM: DiscoveryViewModel
+    
+    init() {
+        _locationManager = StateObject(wrappedValue: LocationDataManager())
+        _discoveryVM = StateObject(wrappedValue: DiscoveryViewModel(locationManager: LocationDataManager()))
+        discoveryVM.locationManager = locationManager
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -20,3 +26,4 @@ struct Nano3_MRTStationApp: App {
         }
     }
 }
+

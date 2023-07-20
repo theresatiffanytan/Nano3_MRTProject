@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PlaceListRow: View {
     let place: Place
-
     var body: some View {
         VStack(alignment: .leading) {
             Text(place.name)
@@ -24,6 +23,6 @@ struct PlaceListRow: View {
 struct PlaceListRow_Previews: PreviewProvider {
     static var previews: some View {
         PlaceListRow(place: Place.dummyPlace[0])
-            .previewLayout(.sizeThatFits)
+        .previewLayout(.sizeThatFits)
     }
 }

@@ -25,7 +25,6 @@ struct CompassView: View {
             locationManager.stopUpdatingLocation()
         }
     }
-
     var content: some View {
         VStack {
             Text(locationManager.headingDesc)
@@ -50,7 +49,6 @@ struct CompassView: View {
 
     }
 }
-
 
 struct CompassView_Previews: PreviewProvider {
     static var previews: some View {

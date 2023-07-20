@@ -90,3 +90,10 @@ class LocationDataManager: NSObject, ObservableObject {
         locationManager.stopMonitoring(for: storeRegion)
     }
 }
+
+extension CLLocation {
+    func toLocation() -> Location {
+        return Location(latitude: self.coordinate.latitude, longitude: self.coordinate.longitude, altitude: self.altitude)
+    }
+}
+

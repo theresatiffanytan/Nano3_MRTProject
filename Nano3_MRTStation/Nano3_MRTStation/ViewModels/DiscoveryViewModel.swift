@@ -12,6 +12,13 @@ class DiscoveryViewModel: ObservableObject {
     @Published var selectedStation: Station?
     private let stationRepository = StationRepository()
     private var cancellables = Set<AnyCancellable>()
+    
+    //perubahan Abner
+    @Published var destinations: [Place] = []
+    @Published var isSameFloor: Bool = false
+    // ambil escalator turun masukin ke detourPlace
+    @Published var detourPlace: Place? = nil
+    
 
     init() {
         fetchData()
@@ -63,5 +70,26 @@ class DiscoveryViewModel: ObservableObject {
 
     private func findStationByID(_ stationID: String) -> Station? {
         return stations.first { $0.id == stationID }
+    }
+    
+    //perubahan Abner
+    
+    func appendDestination(to targetPlace: Place) -> () {
+        destinations.append(targetPlace)
+        updateIsSameFloor()
+    }
+    
+    func clearDestination() -> () {
+        destinations = []
+    }
+    
+    func appendDetour() -> () {
+        guard let detour = detourPlace, !isSameFloor else { return }
+        destinations.insert(detour, at: 0)
+    }
+    
+    func updateIsSameFloor() -> () {
+        // MARK: -- Problem if the floor level is more than 2
+        isSameFloor = LocationDataManager.shared.currentLocation.toLocation().floorLevel == destinations.first?.location.floorLevel
     }
 }

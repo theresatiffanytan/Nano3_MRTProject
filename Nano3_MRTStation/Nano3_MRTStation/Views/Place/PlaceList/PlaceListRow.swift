@@ -7,59 +7,52 @@
 
 import SwiftUI
 
-struct PlaceListItem: View {
+struct PlaceListRow: View {
     let place: Place
+
     var body: some View {
-        HStack {
+        HStack(alignment: .center) {
+            // TODO: Change image with place.image
             Image("2")
                 .resizable()
                 .frame(width: 110, height: 80)
                 .scaledToFit()
                 .cornerRadius(8)
-                .padding(.leading, 15)
-            Spacer()
             VStack(alignment: .leading) {
                 Text(place.name)
-                    .fontWeight(.bold)
-                    .font(.system(size: 16))
-                    .padding(.bottom, 1)
-                    .padding(.top, 15)
+                    .font(.callout)
+                    .fontWeight(.semibold)
                     .foregroundColor(.primary)
-                HStack {
+                HStack(alignment: .top) {
                     Image(systemName: "mappin.and.ellipse")
-                        .font(.system(size: 14))
                         .foregroundColor(.green)
-                    
-                    Text("\(place.location.formattedFloorLevel())")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
+                    Text(place.location.formattedFloorLevel())
                         .foregroundColor(.gray)
                     Image(systemName: "location.fill")
-                        .font(.system(size: 14))
                         .foregroundColor(.blue)
-                        .padding(.leading, 10)
-                    Text("\(place.location.getDistance()) m")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
+                        .padding(.leading, 8)
+                    // TODO: Create formatted place distance extension
+                    Text("\(place.distance)")
+                        .multilineTextAlignment(.leading)
                         .foregroundColor(.gray)
                 }
+                .font(.footnote)
+                .fontWeight(.medium)
+                .padding(.top, 2)
                 Spacer()
             }
-            .frame(maxHeight: 107)
-            .padding(.leading, -40)
-            Spacer()
+            .padding(.leading, 8)
         }
-        .frame(height: 107)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
         .background(RoundedRectangle(cornerRadius: 8)
-            .foregroundColor(.gray.opacity(0.15)))
-        .padding(.vertical, 3)
-        
+        .foregroundColor(Color(uiColor: .systemGray6)))
     }
 }
 
-struct PlaceListItem_Previews: PreviewProvider {
+struct PlaceListRow_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceListItem(place: Place.dummyPlace[0])
+        PlaceListRow(place: Place.dummyPlace[0])
             .previewLayout(.sizeThatFits)
     }
 }

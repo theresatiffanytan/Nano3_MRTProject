@@ -24,7 +24,7 @@ struct PlaceListView: View {
     @ObservedObject var watchvm = WatchViewModel.shared
     
     // Perubahan Abner
-    @State var detourPreference: Services? = nil
+    @State var detourPreference: Services? = .Escalator
     @State var listView: ViewType = ViewType.ListView
     
     let category: Place.PlaceCategory
@@ -50,11 +50,9 @@ struct PlaceListView: View {
                         NavigationLink(destination: DetailView(isSameFloor: discoveryVM.isSameFloor, targetPlace: place, detourPreference: $detourPreference)
                             .onAppear{discoveryVM.appendDestination(to: place)
                                 watchvm.sendPlaceToWatch(place)
-                                
                             }
                             .onDisappear{discoveryVM.clearDestination()}) {
                                 PlaceListItem(place: place)
-                                
                             }
                     }
                 }
@@ -119,7 +117,7 @@ struct DetailView: View {
                 }
                 Spacer()
             }
-            .padding(.vertical,10)
+//            .padding(.vertical)
             
             HStack{
                 HStack{
@@ -208,6 +206,50 @@ struct DetailView: View {
             
             Spacer()
             
+            Group{
+                HStack {
+                    Text("Which route do you want to take?")
+                        .font(.system(size: 14, weight: .medium))
+                    Spacer()
+                }
+                
+                HStack{
+                    Button {
+                        detourPreference = .Escalator
+                    } label: {
+                        Image(detourPreference == .Escalator ? "escalatorpick" : "escalator")
+                            .resizable()
+                            .frame(width: 86, height: 54)
+                            .padding()
+                    }
+                    
+                    Button {
+                        detourPreference = .Elevator
+                    } label: {
+                        Image(detourPreference == .Elevator ? "liftpick" : "lift")
+                            .resizable()
+                            .frame(width: 86, height: 54)
+                            .padding()
+                    }
+                    
+                    Button {
+                        detourPreference = .Staircase
+                    } label: {
+                        Image(detourPreference == .Staircase ? "stairpick" : "stair")
+                            .resizable()
+                            .frame(width: 86, height: 54)
+                            .padding()
+                    }
+                }.padding()
+                    .frame(width: 352, height: 70)
+                    .background(Color("FrameColor"))
+                    .cornerRadius(8)
+                
+            }
+            .opacity(isSameFloor ? 0 : 1)
+            
+            Spacer()
+            
             Button {
                 isPressed = true
             } label: {
@@ -237,7 +279,6 @@ struct DetailView: View {
                 }
             }
         }
-        //        .navigationBarBackButtonHidden()
     }
     func getStringValue(from service: Services) -> String {
         return service.rawValue

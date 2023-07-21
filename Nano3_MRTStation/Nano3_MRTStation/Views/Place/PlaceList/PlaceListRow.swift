@@ -31,8 +31,7 @@ struct PlaceListRow: View {
                     Image(systemName: "location.fill")
                         .foregroundColor(.blue)
                         .padding(.leading, 8)
-                    // TODO: Create formatted place distance extension
-                    Text("\(place.distance)")
+                    Text("\(place.distance.distanceDesc)")
                         .multilineTextAlignment(.leading)
                         .foregroundColor(.gray)
                 }
@@ -47,6 +46,7 @@ struct PlaceListRow: View {
         .padding(.vertical, 12)
         .background(RoundedRectangle(cornerRadius: 8)
         .foregroundColor(Color(uiColor: .systemGray6)))
+        .fixedSize(horizontal: false, vertical: true)
     }
 }
 

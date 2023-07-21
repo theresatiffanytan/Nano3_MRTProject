@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Place: Hashable, Codable {
     let name: String
@@ -15,7 +16,8 @@ struct Place: Hashable, Codable {
     let status: PlaceStatus
     let location: Location
     var distance: Double = 0
-
+    var isCompleted: Bool = false
+    
     enum PlaceCategory: String, Codable, CaseIterable {
         case amenities = "Amenities"
         case eateries = "Eateries"
@@ -28,7 +30,8 @@ struct Place: Hashable, Codable {
         case ticket = "Ticket machine"
         case service = "Service office"
         case disability = "Disability facilities"
-
+        case accessibility = "Accessibility"
+        
         var icon: String {
             switch self {
             case .amenities:
@@ -53,19 +56,38 @@ struct Place: Hashable, Codable {
                 return "office 1"
             case .disability:
                 return "wheelchair 1"
+            case .accessibility:
+                return "escalator"
             }
         }
+
+        enum AccessibilityType: String {
+            case escalator = "Escalator"
+            case lift = "Lift"
+            case stairs = "Stairs"
+        }
     }
-
-
+    
+    
     enum PlaceStatus: String, Codable, CaseIterable {
         case open = "Open"
         case closed = "Closed"
         case up = "Up"
         case down = "Down"
-    }
 
-    // Ignore "distance" property from Codable
+        var color: Color {
+            switch self {
+            case .open:
+                return .green
+            case .closed:
+                return .red
+            case .up, .down:
+                return .accentColor
+            }
+        }
+    }
+    
+    // Ignore "distance" & "isCompleted" properties from Codable
     enum CodingKeys: String, CodingKey {
         case name
         case description
@@ -77,8 +99,6 @@ struct Place: Hashable, Codable {
 }
 
 extension Place {
-
-    
     static let dummyPlace = [
         Place(
             name: "Restroom 1",
@@ -138,4 +158,3 @@ extension Place {
         ),
     ]
 }
-

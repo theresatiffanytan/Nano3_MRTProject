@@ -30,6 +30,7 @@
 		C44E1AF92A68A62D00F9D5B0 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E1AF82A68A62D00F9D5B0 /* FirestoreManager.swift */; };
 		C44E1AFC2A68A77F00F9D5B0 /* StationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E1AFB2A68A77F00F9D5B0 /* StationRepository.swift */; };
 		C44E1AFE2A68A88300F9D5B0 /* Compass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E1AFD2A68A88300F9D5B0 /* Compass.swift */; };
+		C48FA5C32A6AA64A00DC7CE6 /* AccessOptPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48FA5C22A6AA64A00DC7CE6 /* AccessOptPicker.swift */; };
 		C492620D2A6A803C00FF8137 /* StepDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492620C2A6A803C00FF8137 /* StepDivider.swift */; };
 		C492620F2A6A804B00FF8137 /* StepIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492620E2A6A804B00FF8137 /* StepIndicator.swift */; };
 		C49262112A6A808200FF8137 /* StepperProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49262102A6A808200FF8137 /* StepperProgressBar.swift */; };
@@ -49,6 +50,7 @@
 		C4EA02492A67629F00DF0013 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA02482A67629F00DF0013 /* FirebaseFirestore */; };
 		C4EA024B2A67629F00DF0013 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA024A2A67629F00DF0013 /* FirebaseFirestoreSwift */; };
 		C4EA02522A67747800DF0013 /* MockStationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA02512A67747800DF0013 /* MockStationRepository.swift */; };
+		C4FB5F412A6AE3F200833B37 /* InfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB5F402A6AE3F200833B37 /* InfoItem.swift */; };
 		DD0748702A696E8500AF5AFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD07486F2A696E8500AF5AFF /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +98,7 @@
 		C44E1AF82A68A62D00F9D5B0 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		C44E1AFB2A68A77F00F9D5B0 /* StationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRepository.swift; sourceTree = "<group>"; };
 		C44E1AFD2A68A88300F9D5B0 /* Compass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compass.swift; sourceTree = "<group>"; };
+		C48FA5C22A6AA64A00DC7CE6 /* AccessOptPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessOptPicker.swift; sourceTree = "<group>"; };
 		C492620C2A6A803C00FF8137 /* StepDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepDivider.swift; sourceTree = "<group>"; };
 		C492620E2A6A804B00FF8137 /* StepIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIndicator.swift; sourceTree = "<group>"; };
 		C49262102A6A808200FF8137 /* StepperProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperProgressBar.swift; sourceTree = "<group>"; };
@@ -113,6 +116,7 @@
 		C4C6A3B32A62F14D000D18D8 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C4C6A3B42A62F14D000D18D8 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		C4EA02512A67747800DF0013 /* MockStationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStationRepository.swift; sourceTree = "<group>"; };
+		C4FB5F402A6AE3F200833B37 /* InfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoItem.swift; sourceTree = "<group>"; };
 		DD07486F2A696E8500AF5AFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,6 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				C49262132A6A817300FF8137 /* PlaceDetailsView.swift */,
+				C48FA5C22A6AA64A00DC7CE6 /* AccessOptPicker.swift */,
+				C4FB5F402A6AE3F200833B37 /* InfoItem.swift */,
 			);
 			path = PlaceDetails;
 			sourceTree = "<group>";
@@ -474,7 +480,9 @@
 				C492620D2A6A803C00FF8137 /* StepDivider.swift in Sources */,
 				C44E1AFE2A68A88300F9D5B0 /* Compass.swift in Sources */,
 				C4C6A3C02A62F14D000D18D8 /* Station.swift in Sources */,
+				C48FA5C32A6AA64A00DC7CE6 /* AccessOptPicker.swift in Sources */,
 				C4C6A3BB2A62F14D000D18D8 /* PlaceListView.swift in Sources */,
+				C4FB5F412A6AE3F200833B37 /* InfoItem.swift in Sources */,
 				C49262112A6A808200FF8137 /* StepperProgressBar.swift in Sources */,
 				C4C6A3B52A62F14D000D18D8 /* LocationDataManager.swift in Sources */,
 				C4C6A3B82A62F14D000D18D8 /* CompassView.swift in Sources */,
@@ -636,7 +644,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nano3_MRTStation/Preview Content\"";
-				DEVELOPMENT_TEAM = GHRFT69K59;
+				DEVELOPMENT_TEAM = WRQ5UZA34D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nano3-MRTStation-Info.plist";
@@ -671,7 +679,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nano3_MRTStation/Preview Content\"";
-				DEVELOPMENT_TEAM = GHRFT69K59;
+				DEVELOPMENT_TEAM = WRQ5UZA34D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nano3-MRTStation-Info.plist";
@@ -705,7 +713,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nano3 MRT Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = GHRFT69K59;
+				DEVELOPMENT_TEAM = WRQ5UZA34D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nano3-MRT-Watch-App-Info.plist";
@@ -736,7 +744,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nano3 MRT Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = GHRFT69K59;
+				DEVELOPMENT_TEAM = WRQ5UZA34D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nano3-MRT-Watch-App-Info.plist";

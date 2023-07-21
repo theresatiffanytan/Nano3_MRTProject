@@ -41,7 +41,7 @@ struct CompassView: View {
             Text("Target Location: \(locationManager.targetLocation.description)")
                 .font(.body)
                 .padding()
-            Text(locationManager.distanceDesc)
+            Text(locationManager.distance.distanceDesc)
                 .font(.body)
                 .padding()
         }

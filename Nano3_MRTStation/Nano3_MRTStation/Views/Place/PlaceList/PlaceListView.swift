@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-// TODO: Refactor Detour Logic
-enum Services: String {
-    case Escalator
-    case Elevator
-    case Staircase
-}
-
 enum ViewType: String { case ListView, MapView}
 
 struct PlaceListView: View {
@@ -23,10 +16,7 @@ struct PlaceListView: View {
     @State var viewType: ViewType = ViewType.ListView
     let category: Place.PlaceCategory
 
-    // TODO: Refactor Detour Logic
-    @State var detourPreference: Services? = .Escalator
-
-    private func setTabStyle() {
+    func setTabStyle() {
         UISegmentedControl.appearance().selectedSegmentTintColor = .systemBlue
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
     }
@@ -43,10 +33,7 @@ struct PlaceListView: View {
                 ScrollView {
                     ForEach(discoveryVM.getPlacesFiltered(by: category), id: \.self) { place in
                         NavigationLink(
-                            destination: PlaceDetailsView(
-                                isSameFloor: discoveryVM.isSameFloor,
-                                targetPlace: place,
-                                detourPreference: $detourPreference)
+                            destination: PlaceDetailsView(place: place)
                             .onAppear{
                                 discoveryVM.appendDestination(to: place)
                                 watchvm.sendPlaceToWatch(place)
@@ -60,23 +47,23 @@ struct PlaceListView: View {
                     }
                 }
                 // TODO: Refactor Detour Logic
-                .onChange(of: detourPreference, perform: { way in
-                    guard let detour = way else { return }
-                    switch detour {
-                    case Services.Staircase:
-                        // get Place obj for staircase
-                        print("added staircase coor to destinations")
-                        break
-                    case Services.Escalator:
-                        // get Place obj for escalator
-                        print("added escalator coor to destinations")
-                        break
-                    case Services.Elevator:
-                        // get Place obj for lift
-                        print("added lift coor to destinations")
-                        break
-                    }
-                })
+//                .onChange(of: detourPreference, perform: { way in
+//                    guard let detour = way else { return }
+//                    switch detour {
+//                    case Services.Staircase:
+//                        // get Place obj for staircase
+//                        print("added staircase coor to destinations")
+//                        break
+//                    case Services.Escalator:
+//                        // get Place obj for escalator
+//                        print("added escalator coor to destinations")
+//                        break
+//                    case Services.Elevator:
+//                        // get Place obj for lift
+//                        print("added lift coor to destinations")
+//                        break
+//                    }
+//                })
             case .MapView:
                 PlaceListMap()
             }

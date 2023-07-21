@@ -19,45 +19,39 @@ struct Place: Hashable, Codable {
     var isCompleted: Bool = false
     
     enum PlaceCategory: String, Codable, CaseIterable {
-        case amenities = "Amenities"
-        case eateries = "Eateries"
-        case escalator = "Escalator, lift"
-        case commercial = "Commercial area"
-        case toilet = "Toilet"
-        case mushalla = "Mushalla"
-        case firstaid = "First aid"
-        case nursing = "Nursing room"
-        case ticket = "Ticket machine"
-        case service = "Service office"
-        case disability = "Disability facilities"
         case accessibility = "Accessibility"
-        
+        case commercial = "Commercial Area"
+        case restroom = "Restrooms"
+        case prayer = "Prayer Rooms"
+        case firstAid = "First Aid"
+        case nursing = "Nursing Room"
+        case ticketing = "Ticketing"
+        case service = "Services"
+        case exit = "Exit Gates"
+        case disability = "Disability Facility"
+
         var icon: String {
             switch self {
-            case .amenities:
-                return "amenities-icon"
-            case .eateries:
-                return "eateries-icon"
-            case .escalator:
-                return "escalator"
-            case .commercial:
-                return "coffee-cup 1"
-            case .toilet:
-                return "toilet 1"
-            case .mushalla:
-                return "mosque 1"
-            case .firstaid:
-                return "first-aid-kit 1"
-            case .nursing:
-                return "pacifier-2 1"
-            case .ticket:
-                return "atm-card 1"
-            case .service:
-                return "office 1"
-            case .disability:
-                return "wheelchair 1"
             case .accessibility:
-                return "escalator"
+                return "escalator 1"
+            case .commercial:
+                return "commercial"
+            case .restroom:
+                return "restroom"
+            case .prayer:
+                return "prayer"
+            case .firstAid:
+                return "firstaid"
+            case .nursing:
+                return "nursing"
+            case .ticketing:
+                return "ticketing"
+            case .service:
+                return "service"
+            case .disability:
+                return "disability"
+            case .exit:
+                return "disability"
             }
         }
 
@@ -104,7 +98,7 @@ extension Place {
             name: "Restroom 1",
             description: "Restroom description",
             photo: "restroom-photo",
-            category: .amenities,
+            category: .commercial,
             status: .open,
             location: Location(latitude: -6.196751, longitude: 106.822984, altitude: 0)
         ),
@@ -112,7 +106,7 @@ extension Place {
             name: "Eatery 1",
             description: "Eatery description",
             photo: "eatery-photo",
-            category: .eateries,
+            category: .commercial,
             status: .open,
             location: Location(latitude: -6.196752, longitude: 106.822985, altitude: 0)
         ),
@@ -136,7 +130,7 @@ extension Place {
             name: "Ticketing Counter 1",
             description: "Ticketing Counter description",
             photo: "ticketing-counter-photo",
-            category: .ticket,
+            category: .ticketing,
             status: .open,
             location: Location(latitude: -6.196755, longitude: 106.822988, altitude: 0)
         ),
@@ -144,7 +138,7 @@ extension Place {
             name: "Restroom 2",
             description: "Restroom description",
             photo: "restroom-photo",
-            category: .amenities,
+            category: .restroom,
             status: .open,
             location: Location(latitude: -6.123456, longitude: 106.789012, altitude: 0)
         ),
@@ -152,7 +146,7 @@ extension Place {
             name: "Eatery 2",
             description: "Eatery description",
             photo: "eatery-photo",
-            category: .eateries,
+            category: .restroom,
             status: .open,
             location: Location(latitude: -6.123457, longitude: 106.789013, altitude: 0)
         ),

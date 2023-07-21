@@ -30,6 +30,9 @@
 		C44E1AF92A68A62D00F9D5B0 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E1AF82A68A62D00F9D5B0 /* FirestoreManager.swift */; };
 		C44E1AFC2A68A77F00F9D5B0 /* StationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E1AFB2A68A77F00F9D5B0 /* StationRepository.swift */; };
 		C44E1AFE2A68A88300F9D5B0 /* Compass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44E1AFD2A68A88300F9D5B0 /* Compass.swift */; };
+		C492620D2A6A803C00FF8137 /* StepDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492620C2A6A803C00FF8137 /* StepDivider.swift */; };
+		C492620F2A6A804B00FF8137 /* StepIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492620E2A6A804B00FF8137 /* StepIndicator.swift */; };
+		C49262112A6A808200FF8137 /* StepperProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49262102A6A808200FF8137 /* StepperProgressBar.swift */; };
 		C4C6A3B52A62F14D000D18D8 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A52A62F14D000D18D8 /* LocationDataManager.swift */; };
 		C4C6A3B62A62F14D000D18D8 /* CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A62A62F14D000D18D8 /* CLLocationManagerDelegate.swift */; };
 		C4C6A3B72A62F14D000D18D8 /* DiscoveryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A82A62F14D000D18D8 /* DiscoveryViewModel.swift */; };
@@ -91,6 +94,9 @@
 		C44E1AF82A68A62D00F9D5B0 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		C44E1AFB2A68A77F00F9D5B0 /* StationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRepository.swift; sourceTree = "<group>"; };
 		C44E1AFD2A68A88300F9D5B0 /* Compass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compass.swift; sourceTree = "<group>"; };
+		C492620C2A6A803C00FF8137 /* StepDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepDivider.swift; sourceTree = "<group>"; };
+		C492620E2A6A804B00FF8137 /* StepIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIndicator.swift; sourceTree = "<group>"; };
+		C49262102A6A808200FF8137 /* StepperProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperProgressBar.swift; sourceTree = "<group>"; };
 		C4C6A3A52A62F14D000D18D8 /* LocationDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataManager.swift; sourceTree = "<group>"; };
 		C4C6A3A62A62F14D000D18D8 /* CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationManagerDelegate.swift; sourceTree = "<group>"; };
 		C4C6A3A82A62F14D000D18D8 /* DiscoveryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryViewModel.swift; sourceTree = "<group>"; };
@@ -250,6 +256,16 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		C492620B2A6A803100FF8137 /* Stepper */ = {
+			isa = PBXGroup;
+			children = (
+				C492620C2A6A803C00FF8137 /* StepDivider.swift */,
+				C492620E2A6A804B00FF8137 /* StepIndicator.swift */,
+				C49262102A6A808200FF8137 /* StepperProgressBar.swift */,
+			);
+			path = Stepper;
+			sourceTree = "<group>";
+		};
 		C4C6A3A32A62F14D000D18D8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +295,7 @@
 		C4C6A3A92A62F14D000D18D8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C492620B2A6A803100FF8137 /* Stepper */,
 				C4C6A3B02A62F14D000D18D8 /* ContentView.swift */,
 				C41A431A2A68AEDF000E9B3A /* Compass */,
 				C41A43182A68AEA8000E9B3A /* Reusable */,
@@ -434,12 +451,15 @@
 				C44E1AF92A68A62D00F9D5B0 /* FirestoreManager.swift in Sources */,
 				C4C6A3BC2A62F14D000D18D8 /* PlaceListRow.swift in Sources */,
 				C4C6A3B92A62F14D000D18D8 /* LocationStateView.swift in Sources */,
+				C492620F2A6A804B00FF8137 /* StepIndicator.swift in Sources */,
 				C44E1AFC2A68A77F00F9D5B0 /* StationRepository.swift in Sources */,
 				C4C6A3BF2A62F14D000D18D8 /* Place.swift in Sources */,
 				C4C6A3BE2A62F14D000D18D8 /* location.swift in Sources */,
+				C492620D2A6A803C00FF8137 /* StepDivider.swift in Sources */,
 				C44E1AFE2A68A88300F9D5B0 /* Compass.swift in Sources */,
 				C4C6A3C02A62F14D000D18D8 /* Station.swift in Sources */,
 				C4C6A3BB2A62F14D000D18D8 /* PlaceListView.swift in Sources */,
+				C49262112A6A808200FF8137 /* StepperProgressBar.swift in Sources */,
 				C4C6A3B52A62F14D000D18D8 /* LocationDataManager.swift in Sources */,
 				C4C6A3B82A62F14D000D18D8 /* CompassView.swift in Sources */,
 				C4EA02522A67747800DF0013 /* MockStationRepository.swift in Sources */,

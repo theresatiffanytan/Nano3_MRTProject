@@ -11,6 +11,7 @@ struct PlaceDetailsView: View {
     @EnvironmentObject var discoveryVM: DiscoveryViewModel
     // MARK: Temporary
     @State private var selectedDetour: Place.PlaceCategory.AccessibilityType = .escalator
+    @State private var showDirection = false
     let place: Place
 
     var body: some View {
@@ -36,10 +37,13 @@ struct PlaceDetailsView: View {
                 accessSection
                 Spacer()
                 directionBtn
-                    .padding(.bottom, 16)
+                    .padding(.bottom, 8)
             }
             .padding()
-            .navigationBarTitleDisplayMode(.inline)
+        }
+        .sheet(isPresented: $showDirection) {
+            CompassView(targetPlace: place)
+                .presentationDetents([.fraction(0.8), .large])
         }
     }
 
@@ -128,7 +132,9 @@ struct PlaceDetailsView: View {
     }
 
     var directionBtn: some View {
-        NavigationLink(destination: CompassView(targetPlace: place)) {
+        Button(action: {
+            showDirection.toggle()
+        }) {
             Text("Start Direction")
                 .font(.callout)
                 .fontWeight(.medium)

@@ -94,12 +94,10 @@ extension LocationDataManager: CLLocationManagerDelegate {
             normalizedHeading += 360
         }
         
-        let directionIndex = Int((normalizedHeading / 45.0).rounded(.toNearestOrAwayFromZero)) % 8
-        let directionMessage = directionMessages[directionIndex]
+        let directionIndex = Int((normalizedHeading / 45.0).rounded(.toNearestOrAwayFromZero)) % 8        
+//        let formattedValue = formatter.string(from: NSNumber(value: normalizedHeading)) ?? ""
         
-        let formattedValue = formatter.string(from: NSNumber(value: normalizedHeading)) ?? ""
-        
-        return "\(formattedValue)°\n\(directionMessage)"
+        return directionMessages[directionIndex]
     }
 }
 

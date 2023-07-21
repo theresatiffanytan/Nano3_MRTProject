@@ -16,8 +16,8 @@ struct Place: Hashable, Codable {
     let status: PlaceStatus
     let location: Location
     var distance: Double = 0
-    var isCompleted: Bool = false
-    
+    var progress: PlaceProgress = .ongoing
+
     enum PlaceCategory: String, Codable, CaseIterable {
         case accessibility = "Accessibility"
         case commercial = "Commercial Area"
@@ -80,8 +80,14 @@ struct Place: Hashable, Codable {
             }
         }
     }
+
+    enum PlaceProgress: CaseIterable {
+        case completed
+        case pending
+        case ongoing
+    }
     
-    // Ignore "distance" & "isCompleted" properties from Codable
+    // Ignore "distance" & "progress" properties from Codable
     enum CodingKeys: String, CodingKey {
         case name
         case description
@@ -100,7 +106,8 @@ extension Place {
             photo: "restroom-photo",
             category: .commercial,
             status: .open,
-            location: Location(latitude: -6.196751, longitude: 106.822984, altitude: 0)
+            location: Location(latitude: -6.196751, longitude: 106.822984, altitude: 0),
+            progress: .completed
         ),
         Place(
             name: "Eatery 1",
@@ -108,7 +115,8 @@ extension Place {
             photo: "eatery-photo",
             category: .commercial,
             status: .open,
-            location: Location(latitude: -6.196752, longitude: 106.822985, altitude: 0)
+            location: Location(latitude: -6.196752, longitude: 106.822985, altitude: 0),
+            progress: .ongoing
         ),
         Place(
             name: "Shop 1",
@@ -116,7 +124,8 @@ extension Place {
             photo: "shop-photo",
             category: .commercial,
             status: .open,
-            location: Location(latitude: -6.196753, longitude: 106.822986, altitude: 0)
+            location: Location(latitude: -6.196753, longitude: 106.822986, altitude: 0),
+            progress: .pending
         ),
         Place(
             name: "Exit Gate 1",

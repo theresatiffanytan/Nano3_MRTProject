@@ -7,12 +7,12 @@
 import SwiftUI
 
 struct StepDivider: View {
-    var isCompleted: Bool
+    let progress: Place.PlaceProgress
 
     var body: some View {
         Capsule()
-            .fill(isCompleted ? .green : .gray)
-            .frame(height: 2)
+            .fill(progress == .completed ? .green : progress == .ongoing ? .accentColor : Color(uiColor: .systemGray4))
+            .frame(height: 3)
             .fixedSize(horizontal: false, vertical: true)
     }
 }
@@ -20,8 +20,9 @@ struct StepDivider: View {
 struct StepDivider_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            StepDivider(isCompleted: true)
-            StepDivider(isCompleted: false)
+            StepDivider(progress: .completed)
+            StepDivider(progress: .ongoing)
+            StepDivider(progress: .pending)
         }
         .previewLayout(.sizeThatFits)
     }

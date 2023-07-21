@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct CompassView: View {
-    let targetPlace: Place
     @EnvironmentObject var locationManager: LocationDataManager
+    let targetPlace: Place
 
     var body: some View {
-//        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
+        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
             content
-//        }
+        }
+        .padding()
         .onAppear {
             locationManager.startHeadingUpdates()
             locationManager.startMonitoringRegion(center: targetPlace.location.toCLLocation(), identifier: targetPlace.name)
@@ -26,27 +27,42 @@ struct CompassView: View {
 
     var content: some View {
         VStack {
-            StepperProgressBar(currentStep: 2, totalSteps: 4)
+            StepperProgressBar(destinations: [Place.dummyPlace[1], Place.dummyPlace[2]])
+            Text("BLalbalblalbalbl\nalbalblalblablabal")
+                .font(.body)
+                .padding(.horizontal)
+                .padding(.top, 48)
+            Image("compass")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+                .rotationEffect(.degrees(locationManager.heading))
+                .overlay(alignment: .top) {
+                    Image("radial")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
+                .overlay {
+                    Image(systemName: "location.north.fill")
+                        .resizable()
+                        .foregroundColor(.accentColor)
+                        .frame(width: 36, height: 36)
+                        .rotationEffect(.degrees(locationManager.heading))
+                }
+                .padding(.top, 48)
+            Text("\(locationManager.distance.distanceDesc) away")
+                .font(.body)
+                .padding(.top, 36)
             Text(locationManager.headingDesc)
                 .font(.title)
-                .padding()
-            Image(systemName: "location.north.fill")
-                .resizable()
-                .frame(width: 100, height: 100)
-                .padding()
-                .rotationEffect(.degrees(locationManager.heading))
-            Text("Current Location: \(locationManager.currentLocation.description)")
-                .font(.body)
-                .padding()
-            Text("Target Location: \(locationManager.targetLocation.description)")
-                .font(.body)
-                .padding()
-            Text(locationManager.distance.distanceDesc)
-                .font(.body)
-                .padding()
+                .bold()
+                .padding(.top, 2)
+                .padding(.horizontal)
+            Spacer()
         }
         .multilineTextAlignment(.center)
-
+        .padding()
     }
 }
 

@@ -7,20 +7,20 @@
 import SwiftUI
 
 struct StepperProgressBar: View {
-    let currentStep: Int
-    let totalSteps: Int
-    var indicatorSize: CGFloat = 32
+    let destinations: [Place]
+    var indicatorSize: CGFloat = 24
 
     var body: some View {
         HStack(spacing: 0) {
-            ForEach(0..<totalSteps, id: \.self) { step in
-                StepIndicator(
-                    isCompleted: step < currentStep,
-                    text: "Starting Point",
-                    indicatorSize: indicatorSize)
-                if step != totalSteps - 1 {
-                    StepDivider(isCompleted: step < currentStep)
-                }
+            StepIndicator(text: "Start",
+                          progress: .completed,
+                          indicatorSize: indicatorSize)
+            ForEach(destinations, id: \.self) { destination in
+                StepDivider(progress: destination.progress)
+                StepIndicator(text: destination.name,
+                              progress: destination.progress,
+                              indicatorSize: indicatorSize
+                )
             }
         }
     }
@@ -28,7 +28,7 @@ struct StepperProgressBar: View {
 
 struct StepperProgressBar_Previews: PreviewProvider {
     static var previews: some View {
-        StepperProgressBar(currentStep: 2, totalSteps: 4)
+        StepperProgressBar(destinations: [Place.dummyPlace[1], Place.dummyPlace[2]])
             .previewLayout(.sizeThatFits)
     }
 }

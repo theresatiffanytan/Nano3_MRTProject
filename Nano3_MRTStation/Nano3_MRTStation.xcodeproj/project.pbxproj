@@ -129,7 +129,7 @@
 		0FB4BEF12A62EA730009D00C = {
 			isa = PBXGroup;
 			children = (
-				765881EE2A6992530030DAE6 /* WatchViewModel.swift */,
+				DD5B78B22A6A12610022572E /* Shared */,
 				0FB4BEFC2A62EA730009D00C /* Nano3_MRTStation */,
 				765881DC2A6992140030DAE6 /* Nano3 MRT Watch App */,
 				0FB4BEFB2A62EA730009D00C /* Products */,
@@ -306,6 +306,14 @@
 				C44E1AFD2A68A88300F9D5B0 /* Compass.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DD5B78B22A6A12610022572E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				765881EE2A6992530030DAE6 /* WatchViewModel.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

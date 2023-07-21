@@ -47,6 +47,7 @@ struct PlaceListView: View {
             case .ListView:
                 ScrollView {
                     ForEach(discoveryVM.getPlacesFiltered(by: category), id: \.self) { place in
+<<<<<<< Updated upstream
                         NavigationLink(destination: DetailView(isSameFloor: discoveryVM.isSameFloor, targetPlace: place, detourPreference: $detourPreference)
                             .onAppear{discoveryVM.appendDestination(to: place)
                                 watchvm.sendPlaceToWatch(place)
@@ -56,6 +57,17 @@ struct PlaceListView: View {
                                 PlaceListItem(place: place)
                                 
                             }
+=======
+                        //                        NavigationLink(destination: DetailView(isSameFloor: discoveryVM.isSameFloor, targetPlace: place, detourPreference: $detourPreference)
+                        //                            .onAppear{discoveryVM.appendDestination(to: place)}
+                        //                            .onDisappear{discoveryVM.clearDestination()}) {
+                        //                                PlaceListItem(place: place)
+                        //                            }
+                        NavigationLink(destination: CompassView(targetPlace: place)){
+                            PlaceListItem(place: place)
+
+                        }
+>>>>>>> Stashed changes
                     }
                 }
                 .onChange(of: detourPreference, perform: { way in

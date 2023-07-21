@@ -19,7 +19,7 @@ struct PlaceCategoryGridView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(discoveryVM.getPlaceCategories(), id: \.self) { category in
+                ForEach(Place.PlaceCategory.allCases, id: \.self) { category in
                     NavigationLink(destination: PlaceListView(category: category)) {
                         PlaceCategoryGridItem(image: "square.fill", name: category.rawValue)
                     }

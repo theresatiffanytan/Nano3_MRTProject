@@ -37,22 +37,18 @@ class DiscoveryViewModel: ObservableObject {
         selectedStation = station
     }
 
-    func getPlaceCategories() -> [Place.PlaceCategory] {
-        guard let selectedStation = selectedStation else {
-            return []
-        }
-        let categories = selectedStation.places.map { $0.category }
-        let uniqueCategories = Array(Set(categories))
-        return uniqueCategories.sorted(by: { $0.rawValue < $1.rawValue })
-    }
-
     func getPlacesFiltered(by category: Place.PlaceCategory) -> [Place] {
         guard let selectedStation = selectedStation else {
             return []
         }
-        let filteredPlaces = selectedStation.places.filter { $0.category == category }
-        let sortedPlaces = filteredPlaces.sorted { $0.distance < $1.distance }
+        var filteredPlaces = selectedStation.places.filter { $0.category == category }
 
+        filteredPlaces = filteredPlaces.map { place in
+            var updatedPlace = place
+            updatedPlace.distance = LocationDataManager.shared.currentLocation.distance(from: place.location.toCLLocation())
+            return updatedPlace
+        }
+        let sortedPlaces = filteredPlaces.sorted { $0.distance < $1.distance }
         return sortedPlaces
     }
 

@@ -12,9 +12,9 @@ struct CompassView: View {
     @EnvironmentObject var locationManager: LocationDataManager
 
     var body: some View {
-        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
+//        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
             content
-        }
+//        }
         .onAppear {
             locationManager.startHeadingUpdates()
             locationManager.startMonitoringRegion(center: targetPlace.location.toCLLocation(), identifier: targetPlace.name)
@@ -26,6 +26,7 @@ struct CompassView: View {
 
     var content: some View {
         VStack {
+            StepperProgressBar(currentStep: 2, totalSteps: 4)
             Text(locationManager.headingDesc)
                 .font(.title)
                 .padding()
@@ -34,18 +35,13 @@ struct CompassView: View {
                 .frame(width: 100, height: 100)
                 .padding()
                 .rotationEffect(.degrees(locationManager.heading))
-            Text("Current Location: \(locationManager.currentLocation.description)")
-                .font(.body)
-                .padding()
-            Text("Target Location: \(locationManager.targetLocation.description)")
-                .font(.body)
-                .padding()
             Text(locationManager.distanceDesc)
                 .font(.body)
                 .padding()
+            Spacer()
         }
+        .padding()
         .multilineTextAlignment(.center)
-
     }
 }
 

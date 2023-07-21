@@ -20,14 +20,14 @@ struct StepIndicator: View {
                 incompleteStepView
             }
         }
-        .frame(maxWidth: 48)
+        .padding(.horizontal)
         .overlay(alignment: .center) {
             Text(text)
                 .font(.caption2)
                 .multilineTextAlignment(.center)
-                .offset(y: 24)
+                .lineLimit(2, reservesSpace: true)
+                .offset(y: 32)
         }
-        .padding(.horizontal, 2)
     }
 
     private var completedStepView: some View {
@@ -56,9 +56,9 @@ struct StepIndicator: View {
 struct StepIndicator_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            StepIndicator(text: "Starting Point", progress: .completed, indicatorSize: 32)
-            StepIndicator(text: "End Point", progress: .ongoing, indicatorSize: 32)
-            StepIndicator(text: "End Point", progress: .pending, indicatorSize: 32)
+            StepIndicator(text: "Starting Point", progress: .completed, indicatorSize: 23)
+            StepIndicator(text: "End Point", progress: .ongoing, indicatorSize: 24)
+            StepIndicator(text: "End Point", progress: .pending, indicatorSize: 24)
         }
         .previewLayout(.sizeThatFits)
     }

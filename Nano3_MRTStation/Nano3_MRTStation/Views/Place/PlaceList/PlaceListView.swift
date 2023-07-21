@@ -17,7 +17,7 @@ struct PlaceListView: View {
     let category: Place.PlaceCategory
 
     func setTabStyle() {
-        UISegmentedControl.appearance().selectedSegmentTintColor = .systemBlue
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(named: "AccentColor")
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
     }
     

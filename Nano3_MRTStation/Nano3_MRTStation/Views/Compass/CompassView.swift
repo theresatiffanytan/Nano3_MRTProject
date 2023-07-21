@@ -12,9 +12,9 @@ struct CompassView: View {
     let targetPlace: Place
 
     var body: some View {
-        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
+//        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
             content
-        }
+//        }
         .padding()
         .onAppear {
             locationManager.startHeadingUpdates()
@@ -28,10 +28,13 @@ struct CompassView: View {
     var content: some View {
         VStack {
             StepperProgressBar(destinations: [Place.dummyPlace[1], Place.dummyPlace[2]])
+                .padding(.top, 16)
+            Spacer()
             Text("BLalbalblalbalbl\nalbalblalblablabal")
                 .font(.body)
+                .lineLimit(2, reservesSpace: true)
                 .padding(.horizontal)
-                .padding(.top, 48)
+            Spacer()
             Image("compass")
                 .resizable()
                 .scaledToFit()
@@ -50,19 +53,18 @@ struct CompassView: View {
                         .frame(width: 36, height: 36)
                         .rotationEffect(.degrees(locationManager.heading))
                 }
-                .padding(.top, 48)
+            Spacer()
             Text("\(locationManager.distance.distanceDesc) away")
                 .font(.body)
-                .padding(.top, 36)
             Text(locationManager.headingDesc)
                 .font(.title)
                 .bold()
+                .lineLimit(3, reservesSpace: true)
                 .padding(.top, 2)
                 .padding(.horizontal)
             Spacer()
         }
         .multilineTextAlignment(.center)
-        .padding()
     }
 }
 

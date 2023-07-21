@@ -11,8 +11,8 @@ struct StepperProgressBar: View {
     var indicatorSize: CGFloat = 24
 
     var body: some View {
-        HStack(spacing: 0) {
-            StepIndicator(text: "Start",
+        HStack {
+            StepIndicator(text: "Starting Point",
                           progress: .completed,
                           indicatorSize: indicatorSize)
             ForEach(destinations, id: \.self) { destination in

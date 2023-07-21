@@ -56,7 +56,6 @@ struct OptPicker: View {
                         .frame(width: 28)
                 Text(detour.rawValue)
                     .font(.caption2)
-                    .fontWeight(.light)
             }
             .foregroundColor(detour == selectedDetour ? .white : .accentColor)
             Spacer()

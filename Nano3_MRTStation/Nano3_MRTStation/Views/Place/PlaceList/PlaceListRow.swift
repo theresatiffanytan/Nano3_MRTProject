@@ -11,7 +11,7 @@ struct PlaceListRow: View {
     let place: Place
 
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .top) {
             // TODO: Change image with place.image
             Image("2")
                 .resizable()
@@ -25,11 +25,11 @@ struct PlaceListRow: View {
                     .foregroundColor(.primary)
                 HStack(alignment: .top) {
                     Image(systemName: "mappin.and.ellipse")
-                        .foregroundColor(.green)
+                        .foregroundColor(.accentColor)
                     Text(place.location.formattedFloorLevel())
                         .foregroundColor(.gray)
                     Image(systemName: "location.fill")
-                        .foregroundColor(.blue)
+                        .foregroundColor(.accentColor)
                         .padding(.leading, 8)
                     Text("\(place.distance.distanceDesc)")
                         .multilineTextAlignment(.leading)
@@ -38,7 +38,6 @@ struct PlaceListRow: View {
                 .font(.footnote)
                 .fontWeight(.medium)
                 .padding(.top, 2)
-                Spacer()
             }
             .padding(.leading, 8)
         }
@@ -46,7 +45,6 @@ struct PlaceListRow: View {
         .padding(.vertical, 12)
         .background(RoundedRectangle(cornerRadius: 8)
         .foregroundColor(Color(uiColor: .systemGray6)))
-        .fixedSize(horizontal: true, vertical: true)
     }
 }
 

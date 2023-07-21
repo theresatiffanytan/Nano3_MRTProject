@@ -107,7 +107,7 @@ struct PlaceDetailsView: View {
     var detailSection: some View {
         VStack(alignment: .leading) {
             Text("Details")
-                .font(.callout)
+                .font(.body)
                 .fontWeight(.semibold)
             VStack(alignment: .leading){
                 Text("Operational Hours")
@@ -120,8 +120,7 @@ struct PlaceDetailsView: View {
                     Spacer()
                     Text("10:00 AM - 09:00 PM")
                 }
-                .font(.callout)
-                .fontWeight(.medium)
+                .font(.subheadline)
                 .padding(.top, 2)
             }
             .padding(.horizontal, 16)

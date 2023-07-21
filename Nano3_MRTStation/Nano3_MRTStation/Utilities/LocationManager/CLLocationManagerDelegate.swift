@@ -130,11 +130,13 @@ extension Double {
 
         if distanceInMeters < 1000 {
             formattedValue = formatter.string(from: NSNumber(value: distanceInMeters)) ?? ""
-            unit = distanceInMeters == 1 ? "meter" : "meters"
+//            unit = distanceInMeters == 1 ? "meter" : "meters"
+            unit = "m"
         } else {
             let distanceInKilometers = self.kilometers
             formattedValue = formatter.string(from: NSNumber(value: distanceInKilometers)) ?? ""
-            unit = distanceInKilometers == 1 ? "kilometer" : "kilometers"
+//            unit = distanceInKilometers == 1 ? "kilometer" : "kilometers"
+            unit = "km"
         }
         return "\(formattedValue) \(unit)"
     }

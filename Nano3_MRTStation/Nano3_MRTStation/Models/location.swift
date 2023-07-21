@@ -35,10 +35,6 @@ extension Location {
             return String(floorLevel) + "rd Floor"
         }
     }
-    
-    func getDistance() -> Int {
-        return 100
-    }
 
     func toCLLocation() -> CLLocation {
         return CLLocation(

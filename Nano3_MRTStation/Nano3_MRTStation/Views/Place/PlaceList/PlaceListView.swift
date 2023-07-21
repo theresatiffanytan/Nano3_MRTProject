@@ -7,55 +7,59 @@
 
 import SwiftUI
 
+// TODO: Refactor Detour Logic
 enum Services: String {
     case Escalator
     case Elevator
     case Staircase
 }
 
-enum ViewType: String {
-    case ListView
-    case MapView
-}
+enum ViewType: String { case ListView, MapView}
 
 struct PlaceListView: View {
     @EnvironmentObject var discoveryVM: DiscoveryViewModel
     @EnvironmentObject var locationManager: LocationDataManager
     @ObservedObject var watchvm = WatchViewModel.shared
-    
-    // Perubahan Abner
-    @State var detourPreference: Services? = .Escalator
-    @State var listView: ViewType = ViewType.ListView
-    
+    @State var viewType: ViewType = ViewType.ListView
     let category: Place.PlaceCategory
+
+    // TODO: Refactor Detour Logic
+    @State var detourPreference: Services? = .Escalator
+
+    private func setTabStyle() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = .systemBlue
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+    }
     
     var body: some View {
         VStack{
-            HStack{
-                Picker("List", selection: $listView){
-                    Text("List").tag(ViewType.ListView)
-                    Text("Map View").tag(ViewType.MapView)
-                }
+            Picker("View Type", selection: $viewType){
+                Text("List").tag(ViewType.ListView)
+                Text("Map View").tag(ViewType.MapView)
             }
             .pickerStyle(.segmented)
-            .onAppear {
-                UISegmentedControl.appearance().selectedSegmentTintColor = .systemBlue
-                UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-            }
-            .padding(.vertical, 10)
-            switch listView {
+            switch viewType {
             case .ListView:
                 ScrollView {
                     ForEach(discoveryVM.getPlacesFiltered(by: category), id: \.self) { place in
-                        NavigationLink(destination: PlaceDetailsView(isSameFloor: discoveryVM.isSameFloor, targetPlace: place, detourPreference: $detourPreference)
-                            .onAppear{discoveryVM.appendDestination(to: place)
+                        NavigationLink(
+                            destination: PlaceDetailsView(
+                                isSameFloor: discoveryVM.isSameFloor,
+                                targetPlace: place,
+                                detourPreference: $detourPreference)
+                            .onAppear{
+                                discoveryVM.appendDestination(to: place)
                                 watchvm.sendPlaceToWatch(place)
                             }
-                            .onDisappear{discoveryVM.clearDestination()}) {
-                                PlaceListItem(place: place)
+                            .onDisappear{
+                                discoveryVM.clearDestination()
+                            }) {
+                                PlaceListRow(place: place)
+                                .padding(.vertical, 4)
                             }
                     }
                 }
+                // TODO: Refactor Detour Logic
                 .onChange(of: detourPreference, perform: { way in
                     guard let detour = way else { return }
                     switch detour {
@@ -74,14 +78,13 @@ struct PlaceListView: View {
                     }
                 })
             case .MapView:
-                VStack{
-                    Text("Sabar ya belum jadi")
-                    Spacer()
-                }
+                PlaceListMap()
             }
         }
-        .padding(.horizontal, 20)
+        .navigationBarTitleDisplayMode(.inline)
+        .padding()
         .onAppear {
+            setTabStyle()
             locationManager.validateLocationAuthorizationStatus()
         }
         .onDisappear {

@@ -56,7 +56,7 @@ struct PlaceDetailsView: View {
                         Text("Distance")
                             .font(.system(size: 12))
                             .foregroundColor(Color("DetailColor"))
-                        Text("\(targetPlace.location.getDistance()) m")
+                        Text("\(targetPlace.distance) m")
                             .font(.system(size: 14, weight: .medium))
                     }
                     .padding(.leading, 8)

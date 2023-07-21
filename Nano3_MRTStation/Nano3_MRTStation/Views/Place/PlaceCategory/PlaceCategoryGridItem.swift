@@ -12,13 +12,20 @@ struct PlaceCategoryGridItem: View {
 
     var body: some View {
         VStack {
-            Image(systemName: image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 50)
+            ZStack {
+                RoundedRectangle(cornerRadius: 12)
+                    .frame(width: 106, height: 106)
+                    .foregroundColor(Color("LightBlue"))
+                
+                Image(image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 52, height: 52)
                 .foregroundColor(.blue)
+            }
             Text(name)
-                .font(.subheadline)
+                .font(.system(size: 14))
+                .fontWeight(.medium)
                 .foregroundColor(.primary)
         }
     }
@@ -26,6 +33,6 @@ struct PlaceCategoryGridItem: View {
 
 struct PlaceCategoryGridItem_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceCategoryGridItem(image: "square.fill", name: "Shops")
+        PlaceCategoryGridItem(image: "mosque 1", name: "Shops")
     }
 }

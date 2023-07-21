@@ -42,7 +42,7 @@ struct WatchCompassView: View {
             Text(locationManager.headingDesc)
                 .font(.system(size: 17))
                 .padding()
-            Text(locationManager.distanceDesc)
+            Text(locationManager.distance.distanceDesc)
                 .font(.system(size: 10))
         }
         .multilineTextAlignment(.center)

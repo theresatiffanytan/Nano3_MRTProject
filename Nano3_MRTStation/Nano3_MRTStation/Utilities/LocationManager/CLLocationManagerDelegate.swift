@@ -23,8 +23,7 @@ extension LocationDataManager: CLLocationManagerDelegate {
         currentLocation = location
         
         distance = currentLocation.distance(from: targetLocation)
-        distanceDesc = formatDistance(distance)
-        print(distanceDesc)
+        print(distance.distanceDesc)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
@@ -102,31 +101,9 @@ extension LocationDataManager: CLLocationManagerDelegate {
         
         return "\(formattedValue)°\n\(directionMessage)"
     }
-    
-    private func formatDistance(_ distance: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 1
-        formatter.maximumFractionDigits = 1
-        
-        let distanceInMeters = distance.meters
-        var formattedValue = ""
-        var unit = ""
-        
-        if distanceInMeters < 1000 {
-            formattedValue = formatter.string(from: NSNumber(value: distanceInMeters)) ?? ""
-            unit = distanceInMeters == 1 ? "meter" : "meters"
-        } else {
-            let distanceInKilometers = distance.kilometers
-            formattedValue = formatter.string(from: NSNumber(value: distanceInKilometers)) ?? ""
-            unit = distanceInKilometers == 1 ? "kilometer" : "kilometers"
-        }
-        return "\(formattedValue) \(unit) away"
-    }
-    
 }
 
-private extension Double {
+extension Double {
     var radians: Double {
         Measurement(value: self, unit: UnitAngle.degrees).converted(to: .radians).value
     }
@@ -141,5 +118,26 @@ private extension Double {
     
     var kilometers: Double {
         Measurement(value: self / 1000, unit: UnitLength.kilometers).value
+    }
+
+    var distanceDesc: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+
+        let distanceInMeters = self.meters
+        var formattedValue = ""
+        var unit = ""
+
+        if distanceInMeters < 1000 {
+            formattedValue = formatter.string(from: NSNumber(value: distanceInMeters)) ?? ""
+            unit = distanceInMeters == 1 ? "meter" : "meters"
+        } else {
+            let distanceInKilometers = self.kilometers
+            formattedValue = formatter.string(from: NSNumber(value: distanceInKilometers)) ?? ""
+            unit = distanceInKilometers == 1 ? "kilometer" : "kilometers"
+        }
+        return "\(formattedValue) \(unit)"
     }
 }

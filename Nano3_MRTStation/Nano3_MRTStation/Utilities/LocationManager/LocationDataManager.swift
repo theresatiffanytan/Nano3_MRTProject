@@ -19,7 +19,6 @@ class LocationDataManager: NSObject, ObservableObject {
     @Published var heading: Double = 0.0
     @Published var headingDesc: String = ""
     @Published var distance: CLLocationDistance = 0.0
-    @Published var distanceDesc: String = ""
 
     var storeRegion: CLCircularRegion?
     @Published var didArriveAtTakeout = false

@@ -46,7 +46,7 @@ struct PlaceListRow: View {
         .padding(.vertical, 12)
         .background(RoundedRectangle(cornerRadius: 8)
         .foregroundColor(Color(uiColor: .systemGray6)))
-        .fixedSize(horizontal: false, vertical: true)
+        .fixedSize(horizontal: true, vertical: true)
     }
 }
 

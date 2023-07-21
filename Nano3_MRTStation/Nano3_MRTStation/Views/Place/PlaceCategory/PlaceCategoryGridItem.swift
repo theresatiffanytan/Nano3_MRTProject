@@ -24,7 +24,7 @@ struct PlaceCategoryGridItem: View {
                 .foregroundColor(.blue)
             }
             Text(name)
-                .font(.system(size: 14))
+                .font(.footnote)
                 .fontWeight(.medium)
                 .foregroundColor(.primary)
         }

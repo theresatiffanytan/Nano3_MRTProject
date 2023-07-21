@@ -34,36 +34,18 @@ struct PlaceListView: View {
                     ForEach(discoveryVM.getPlacesFiltered(by: category), id: \.self) { place in
                         NavigationLink(
                             destination: PlaceDetailsView(place: place)
-                            .onAppear{
-                                discoveryVM.appendDestination(to: place)
-                                watchvm.sendPlaceToWatch(place)
-                            }
-                            .onDisappear{
-                                discoveryVM.clearDestination()
-                            }) {
-                                PlaceListRow(place: place)
-                                .padding(.vertical, 4)
-                            }
+                                .onAppear{
+                                    discoveryVM.appendDestination(to: place)
+                                    watchvm.sendPlaceToWatch(place)
+                                }
+                                .onDisappear{
+                                    discoveryVM.clearDestination()
+                                }) {
+                                    PlaceListRow(place: place)
+                                        .padding(.vertical, 4)
+                                }
                     }
                 }
-                // TODO: Refactor Detour Logic
-//                .onChange(of: detourPreference, perform: { way in
-//                    guard let detour = way else { return }
-//                    switch detour {
-//                    case Services.Staircase:
-//                        // get Place obj for staircase
-//                        print("added staircase coor to destinations")
-//                        break
-//                    case Services.Escalator:
-//                        // get Place obj for escalator
-//                        print("added escalator coor to destinations")
-//                        break
-//                    case Services.Elevator:
-//                        // get Place obj for lift
-//                        print("added lift coor to destinations")
-//                        break
-//                    }
-//                })
             case .MapView:
                 PlaceListMap()
             }

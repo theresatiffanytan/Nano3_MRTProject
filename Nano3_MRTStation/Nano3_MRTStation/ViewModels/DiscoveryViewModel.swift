@@ -50,11 +50,19 @@ class DiscoveryViewModel: ObservableObject {
         guard let selectedStation = selectedStation else {
             return []
         }
-        let filteredPlaces = selectedStation.places.filter { $0.category == category }
+        var filteredPlaces = selectedStation.places.filter { $0.category == category }
+
+        filteredPlaces = filteredPlaces.map { place in
+            var updatedPlace = place
+            updatedPlace.distance = LocationDataManager.shared.currentLocation.distance(from: place.location.toCLLocation())
+            return updatedPlace
+        }
+
         let sortedPlaces = filteredPlaces.sorted { $0.distance < $1.distance }
 
         return sortedPlaces
     }
+
 
     func addPlaceToStation(stationID: String, place: Place) {
         guard let station = findStationByID(stationID) else {
@@ -82,7 +90,7 @@ class DiscoveryViewModel: ObservableObject {
     func clearDestination() -> () {
         destinations = []
     }
-    
+
     func appendDetour() -> () {
         guard let detour = detourPlace, !isSameFloor else { return }
         destinations.insert(detour, at: 0)

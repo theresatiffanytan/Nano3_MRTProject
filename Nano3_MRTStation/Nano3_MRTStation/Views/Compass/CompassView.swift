@@ -12,9 +12,9 @@ struct CompassView: View {
     @EnvironmentObject var locationManager: LocationDataManager
 
     var body: some View {
-        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
+//        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
             content
-        }
+//        }
         .onAppear {
             locationManager.startHeadingUpdates()
             locationManager.startMonitoringRegion(center: targetPlace.location.toCLLocation(), identifier: targetPlace.name)
@@ -26,6 +26,7 @@ struct CompassView: View {
 
     var content: some View {
         VStack {
+            StepperProgressBar(currentStep: 2, totalSteps: 4)
             Text(locationManager.headingDesc)
                 .font(.title)
                 .padding()

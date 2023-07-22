@@ -10,38 +10,41 @@ import SwiftUI
 struct CompassView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var locationManager: LocationDataManager
-    let targetPlace: Place
+    let destinations: [Place]
 
     var body: some View {
         LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
             content
         }
         .padding()
-        .alert("You've arrived to \(targetPlace.name)", isPresented: $locationManager.didArrived) {
-            Button("OK", role: .cancel) { dismiss() }
+        .alert("You've arrived to \(locationManager.targetPlace?.name ?? "No Location")", isPresented: $locationManager.didArrived) {
+            Button("OK", role: .cancel) {
+                locationManager.updateTrip()
+            }
+        }
+        .onChange(of: locationManager.tripFinished) { newValue in
+            if newValue {
+                dismiss()
+            }
         }
         .onAppear {
-            locationManager.validateLocationAuthorizationStatus()
-            locationManager.requestNotificationAuthorization()
-            locationManager.startHeadingUpdates()
-            locationManager.startMonitoringRegion(center: targetPlace.location.toCLLocation(), identifier: targetPlace.name)
+            locationManager.destinations = destinations
+            locationManager.startTrip()
         }
         .onDisappear {
-            locationManager.stopUpdatingLocation()
-            locationManager.stopUpdatingHeading()
-            locationManager.stopMonitoringRegion()
+            locationManager.stopTrip()
         }
     }
 
     var content: some View {
         VStack {
-            StepperProgressBar(destinations: [Place.dummyPlace[1], Place.dummyPlace[2]])
+            StepperProgressBar(destinations: locationManager.destinations)
                 .padding(.top, 16)
             Spacer()
-            Text("BLalbalblalbalbl\nalbalblalblablabal")
+            Text(locationManager.getTripActionDesc())
                 .font(.body)
                 .lineLimit(2, reservesSpace: true)
-                .padding(.horizontal)
+                .padding()
             Spacer()
             Image("compass")
                 .resizable()
@@ -64,10 +67,10 @@ struct CompassView: View {
             Spacer()
             Text("\(locationManager.distance.distanceDesc) away")
                 .font(.body)
-            Text("\(locationManager.currentLocation.description)")
-                .font(.body)
-            Text("\(locationManager.targetLocation.description)")
-                .font(.body)
+            Text("\(locationManager.headingDesc)")
+                .font(.title2)
+                .bold()
+                .padding(.top, 1)
             Spacer()
         }
         .multilineTextAlignment(.center)
@@ -77,7 +80,8 @@ struct CompassView: View {
 
 struct CompassView_Previews: PreviewProvider {
     static var previews: some View {
-        CompassView(targetPlace: Place.dummyPlace[0])
-            .environmentObject(LocationDataManager())
+        CompassView(
+            destinations: [Place.dummyPlace[0], Place.dummyPlace[1]])
+        .environmentObject(LocationDataManager())
     }
 }

@@ -37,8 +37,9 @@ extension LocationDataManager: CLLocationManagerDelegate, UNUserNotificationCent
 #if os(iOS)
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         guard let region = region as? CLCircularRegion else { return }
-        didArrived = true
         print("User enter \(region.identifier)")
+        didArrived = true
+        stopTrip()
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
@@ -62,7 +63,6 @@ extension LocationDataManager: CLLocationManagerDelegate, UNUserNotificationCent
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         print("Received Notification")
-        didArrived = true
         completionHandler()
     }
 
@@ -73,7 +73,6 @@ extension LocationDataManager: CLLocationManagerDelegate, UNUserNotificationCent
         @escaping (UNNotificationPresentationOptions) -> Void
     ) {
         print("Received Notification in Foreground")
-        didArrived = true
         completionHandler(.sound)
     }
 

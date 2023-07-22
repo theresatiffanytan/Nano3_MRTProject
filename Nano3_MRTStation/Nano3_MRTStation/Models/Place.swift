@@ -16,7 +16,7 @@ struct Place: Hashable, Codable {
     let status: PlaceStatus
     let location: Location
     var distance: Double = 0
-    var progress: PlaceProgress = .ongoing
+    var progress: PlaceProgress = .pending
 
     enum PlaceCategory: String, Codable, CaseIterable {
         case accessibility = "Accessibility"
@@ -101,22 +101,20 @@ struct Place: Hashable, Codable {
 extension Place {
     static let dummyPlace = [
         Place(
-            name: "Restroom 1",
+            name: "Apple Campus",
             description: "Restroom description",
             photo: "restroom-photo",
             category: .commercial,
             status: .open,
-            location: Location(latitude: -6.196751, longitude: 106.822984, altitude: 0),
-            progress: .completed
+            location: Location(latitude: 37.33182000, longitude: -122.03118000, altitude: 20)
         ),
         Place(
-            name: "Eatery 1",
+            name: "Muse Salon",
             description: "Eatery description",
             photo: "eatery-photo",
             category: .commercial,
             status: .open,
-            location: Location(latitude: -6.196752, longitude: 106.822985, altitude: 0),
-            progress: .ongoing
+            location: Location(latitude: 37.33162000, longitude: -122.03302000, altitude: 0)
         ),
         Place(
             name: "Shop 1",
@@ -124,8 +122,7 @@ extension Place {
             photo: "shop-photo",
             category: .commercial,
             status: .open,
-            location: Location(latitude: -6.196753, longitude: 106.822986, altitude: 0),
-            progress: .pending
+            location: Location(latitude: -6.196753, longitude: 106.822986, altitude: 0)
         ),
         Place(
             name: "Exit Gate 1",

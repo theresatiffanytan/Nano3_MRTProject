@@ -11,13 +11,16 @@ import UserNotifications
 class LocationDataManager: NSObject, ObservableObject{
     static let shared = LocationDataManager()
     private let locationManager = CLLocationManager()
-    var targetLocation = CLLocation()
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
     @Published var currentLocation = CLLocation()
     @Published var currentHeading = CLHeading()
     @Published var heading: Double = 0.0
     @Published var headingDesc: String = ""
     @Published var distance: CLLocationDistance = 0.0
+    @Published var destinations: [Place] = []
+    @Published var targetLocation = CLLocation()
+    @Published var targetPlace: Place?
+    @Published var tripFinished = false
 
     var storeRegion: CLCircularRegion?
     @Published var didArrived = false
@@ -77,7 +80,7 @@ class LocationDataManager: NSObject, ObservableObject{
         print("Heading update is stopped.")
     }
 
-    #if os(iOS)
+#if os(iOS)
     func startMonitoringRegion(center: CLLocation, identifier: String) {
         targetLocation = center
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
@@ -98,7 +101,64 @@ class LocationDataManager: NSObject, ObservableObject{
         locationManager.stopMonitoring(for: storeRegion)
         print("Region monitoring is stopped.")
     }
-    #endif
+
+#endif
+
+    func startTrip() {
+        validateLocationAuthorizationStatus()
+        requestNotificationAuthorization()
+
+        guard let pendingDestinationIndex = getPendingDestinationIndex() else {
+            tripFinished = true
+            return
+        }
+        destinations[pendingDestinationIndex].progress = .ongoing
+        let ongoingDestination = destinations[pendingDestinationIndex]
+        targetPlace = ongoingDestination
+        targetLocation = ongoingDestination.location.toCLLocation()
+
+        startHeadingUpdates()
+#if os(iOS)
+        startMonitoringRegion(center: targetLocation, identifier: ongoingDestination.name)
+#endif
+    }
+
+    func updateTrip() {
+        guard let ongoingDestinationIndex = getOngoingDestinationIndex() else {
+            return
+        }
+        destinations[ongoingDestinationIndex].progress = .completed
+        startTrip()
+    }
+
+    func stopTrip() {
+        stopUpdatingLocation()
+        stopUpdatingHeading()
+#if os(iOS)
+        stopMonitoringRegion()
+#endif
+    }
+
+    func getTripActionDesc() -> String {
+        if let placeName = targetPlace?.name {
+            return "Follow the direction to go to\n\(placeName)"
+        } else {
+            return "Trip Finished"
+        }
+    }
+
+
+    func getOngoingDestinationIndex() -> Int? {
+        destinations.firstIndex(where: { $0.progress == .ongoing })
+    }
+
+    func getPendingDestinationIndex() -> Int? {
+        destinations.firstIndex(where: { $0.progress == .pending })
+    }
+
+    func getCompletedDestinationIndex() -> Int? {
+        destinations.lastIndex(where: { $0.progress == .completed })
+    }
 
     func requestNotificationAuthorization() {
         let options: UNAuthorizationOptions = [.sound, .alert]
@@ -115,7 +175,7 @@ class LocationDataManager: NSObject, ObservableObject{
         guard let storeRegion = storeRegion else { return }
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = "You've arrived to \(storeRegion.identifier)"
-//        notificationContent.body = storeRegion.identifier
+        //        notificationContent.body = storeRegion.identifier
         notificationContent.sound = .default
 
         let trigger = UNLocationNotificationTrigger(

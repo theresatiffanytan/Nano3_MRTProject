@@ -8,4 +8,8 @@
         <name>Apple Campus</name>
         <time>2021-01-23T14:00:05Z</time>
     </wpt>
+    <wpt lat="37.33162000" lon="-122.03302000">
+        <name>Muse Salon</name>
+        <time>2021-01-23T14:00:15Z</time>
+    </wpt>
 </gpx>

@@ -42,7 +42,8 @@ struct PlaceDetailsView: View {
             .padding()
         }
         .sheet(isPresented: $showDirection) {
-            CompassView(targetPlace: place)
+            CompassView(
+                destinations: [Place.dummyPlace[0], Place.dummyPlace[1]])
                 .presentationDetents([.fraction(0.8), .large])
         }
     }

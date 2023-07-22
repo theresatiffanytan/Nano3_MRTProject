@@ -25,10 +25,9 @@ struct WatchCompassView: View {
             
         }
         .onDisappear {
-            locationManager.stopUpdatingHeading()
             locationManager.stopUpdatingLocation()
+            locationManager.stopUpdatingHeading()
         }
-        
     }
     
     var content: some View {

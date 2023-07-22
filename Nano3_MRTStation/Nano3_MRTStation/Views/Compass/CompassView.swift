@@ -8,20 +8,28 @@
 import SwiftUI
 
 struct CompassView: View {
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var locationManager: LocationDataManager
     let targetPlace: Place
 
     var body: some View {
-//        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
+        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
             content
-//        }
+        }
         .padding()
+        .alert("You've arrived to \(targetPlace.name)", isPresented: $locationManager.didArrived) {
+            Button("OK", role: .cancel) { dismiss() }
+        }
         .onAppear {
+            locationManager.validateLocationAuthorizationStatus()
+            locationManager.requestNotificationAuthorization()
             locationManager.startHeadingUpdates()
             locationManager.startMonitoringRegion(center: targetPlace.location.toCLLocation(), identifier: targetPlace.name)
         }
         .onDisappear {
+            locationManager.stopUpdatingLocation()
             locationManager.stopUpdatingHeading()
+            locationManager.stopMonitoringRegion()
         }
     }
 
@@ -56,12 +64,10 @@ struct CompassView: View {
             Spacer()
             Text("\(locationManager.distance.distanceDesc) away")
                 .font(.body)
-            Text(locationManager.headingDesc)
-                .font(.title)
-                .bold()
-                .lineLimit(3, reservesSpace: true)
-                .padding(.top, 2)
-                .padding(.horizontal)
+            Text("\(locationManager.currentLocation.description)")
+                .font(.body)
+            Text("\(locationManager.targetLocation.description)")
+                .font(.body)
             Spacer()
         }
         .multilineTextAlignment(.center)

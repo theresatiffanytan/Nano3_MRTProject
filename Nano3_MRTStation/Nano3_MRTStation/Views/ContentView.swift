@@ -12,7 +12,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             PlaceCategoryGridView()
-                .onLongPressGesture(minimumDuration: 3) {
+                .onLongPressGesture(minimumDuration: 1) {
                     showAddPlaceView.toggle()
                 }
                 .sheet(isPresented: $showAddPlaceView) {

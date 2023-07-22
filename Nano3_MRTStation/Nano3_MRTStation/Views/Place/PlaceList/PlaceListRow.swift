@@ -40,6 +40,7 @@ struct PlaceListRow: View {
                 .padding(.top, 2)
             }
             .padding(.leading, 8)
+            Spacer()
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)

@@ -8,9 +8,8 @@
 import CoreLocation
 import UserNotifications
 
-class LocationDataManager: NSObject, ObservableObject {
+class LocationDataManager: NSObject, ObservableObject{
     static let shared = LocationDataManager()
-
     private let locationManager = CLLocationManager()
     var targetLocation = CLLocation()
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
@@ -21,17 +20,22 @@ class LocationDataManager: NSObject, ObservableObject {
     @Published var distance: CLLocationDistance = 0.0
 
     var storeRegion: CLCircularRegion?
-    @Published var didArriveAtTakeout = false
-
+    @Published var didArrived = false
+    private let notificationCenter = UNUserNotificationCenter.current()
 
     override init() {
         super.init()
         setupLocationManager()
+        setupNotificationCenter()
     }
 
     private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.allowsBackgroundLocationUpdates = true
+    }
+
+    private func setupNotificationCenter() {
+        notificationCenter.delegate = self
     }
 
     func validateLocationAuthorizationStatus() {
@@ -55,18 +59,22 @@ class LocationDataManager: NSObject, ObservableObject {
     func startLocationUpdates() {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        print("Location update is started.")
     }
 
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
+        print("Location update is stopped.")
     }
 
     func startHeadingUpdates() {
         locationManager.startUpdatingHeading()
+        print("Heading update is started.")
     }
 
     func stopUpdatingHeading() {
         locationManager.stopUpdatingHeading()
+        print("Heading update is stopped.")
     }
 
     #if os(iOS)
@@ -88,8 +96,44 @@ class LocationDataManager: NSObject, ObservableObject {
     func stopMonitoringRegion() {
         guard let storeRegion = storeRegion else { return }
         locationManager.stopMonitoring(for: storeRegion)
+        print("Region monitoring is stopped.")
     }
     #endif
+
+    func requestNotificationAuthorization() {
+        let options: UNAuthorizationOptions = [.sound, .alert]
+        notificationCenter
+            .requestAuthorization(options: options) { [weak self] result, _ in
+                print("Notification Auth Request result: \(result)")
+                if result {
+                    self?.registerNotification()
+                }
+            }
+    }
+
+    private func registerNotification() {
+        guard let storeRegion = storeRegion else { return }
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = "You've arrived to \(storeRegion.identifier)"
+//        notificationContent.body = storeRegion.identifier
+        notificationContent.sound = .default
+
+        let trigger = UNLocationNotificationTrigger(
+            region: storeRegion,
+            repeats: false)
+
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: notificationContent,
+            trigger: trigger)
+
+        notificationCenter
+            .add(request) { error in
+                if error != nil {
+                    print("Error: \(String(describing: error))")
+                }
+            }
+    }
 }
 
 extension CLLocation {

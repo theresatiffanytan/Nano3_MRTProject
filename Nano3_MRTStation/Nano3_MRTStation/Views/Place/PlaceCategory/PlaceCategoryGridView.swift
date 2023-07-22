@@ -48,7 +48,7 @@ struct PlaceCategoryGridView: View {
             Spacer()
         }
         .padding()
-        .onDisappear {
+        .onAppear {
             locationManager.stopUpdatingLocation()
         }
     }

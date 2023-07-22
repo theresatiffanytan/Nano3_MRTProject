@@ -6,22 +6,17 @@
 //
 
 import CoreLocation
+import UserNotifications
 
-extension LocationDataManager: CLLocationManagerDelegate {
+extension LocationDataManager: CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         authorizationStatus = status
-        switch status {
-        case .authorizedWhenInUse, .authorizedAlways:
-            startLocationUpdates()
-        default:
-            break
-        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         currentLocation = location
-        
+
         distance = currentLocation.distance(from: targetLocation)
         print(distance.distanceDesc)
     }
@@ -39,10 +34,10 @@ extension LocationDataManager: CLLocationManagerDelegate {
         print("⚠️ Error while updating location: \(error.localizedDescription)")
     }
     
-    #if os(iOS)
+#if os(iOS)
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         guard let region = region as? CLCircularRegion else { return }
-        didArriveAtTakeout = true
+        didArrived = true
         print("User enter \(region.identifier)")
     }
     
@@ -51,7 +46,7 @@ extension LocationDataManager: CLLocationManagerDelegate {
         print("User leave \(region.identifier)")
     }
     
-   
+
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
         guard let region = region else {
             print("The region could not be monitored, and the reason for the failure is not known.")
@@ -60,6 +55,28 @@ extension LocationDataManager: CLLocationManagerDelegate {
         print("⚠️ Error in monitoring the region with a identifier: \(region.identifier)")
     }
 #endif
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        print("Received Notification")
+        didArrived = true
+        completionHandler()
+    }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler:
+        @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        print("Received Notification in Foreground")
+        didArrived = true
+        completionHandler(.sound)
+    }
+
     private func calculateTargetBearing() -> Double {
         let deltaLongitude = targetLocation.coordinate.longitude.radians - currentLocation.coordinate.longitude.radians
         let thetaB = targetLocation.coordinate.latitude.radians
@@ -94,8 +111,8 @@ extension LocationDataManager: CLLocationManagerDelegate {
             normalizedHeading += 360
         }
         
-        let directionIndex = Int((normalizedHeading / 45.0).rounded(.toNearestOrAwayFromZero)) % 8        
-//        let formattedValue = formatter.string(from: NSNumber(value: normalizedHeading)) ?? ""
+        let directionIndex = Int((normalizedHeading / 45.0).rounded(.toNearestOrAwayFromZero)) % 8
+        //        let formattedValue = formatter.string(from: NSNumber(value: normalizedHeading)) ?? ""
         
         return directionMessages[directionIndex]
     }
@@ -130,12 +147,10 @@ extension Double {
 
         if distanceInMeters < 1000 {
             formattedValue = formatter.string(from: NSNumber(value: distanceInMeters)) ?? ""
-//            unit = distanceInMeters == 1 ? "meter" : "meters"
             unit = "m"
         } else {
             let distanceInKilometers = self.kilometers
             formattedValue = formatter.string(from: NSNumber(value: distanceInKilometers)) ?? ""
-//            unit = distanceInKilometers == 1 ? "kilometer" : "kilometers"
             unit = "km"
         }
         return "\(formattedValue) \(unit)"

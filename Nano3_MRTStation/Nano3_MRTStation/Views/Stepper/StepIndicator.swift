@@ -7,27 +7,27 @@
 import SwiftUI
 
 struct StepIndicator: View {
-    let isCompleted: Bool
     let text: String
+    let progress: Place.PlaceProgress
     let indicatorSize: CGFloat
 
     var body: some View {
         Group {
-            if isCompleted {
+            switch progress {
+            case .completed:
                 completedStepView
-            } else {
+            case .ongoing, .pending:
                 incompleteStepView
             }
         }
-        .frame(width: 48)
-        .overlay(alignment: .bottom) {
+        .padding(.horizontal)
+        .overlay(alignment: .center) {
             Text(text)
-                .foregroundColor(.secondary)
-                .font(.caption)
+                .font(.caption2)
                 .multilineTextAlignment(.center)
-                .offset(y: 40)
+                .lineLimit(2, reservesSpace: true)
+                .offset(y: 32)
         }
-        .padding(.horizontal, 2)
     }
 
     private var completedStepView: some View {
@@ -43,12 +43,12 @@ struct StepIndicator: View {
 
     private var incompleteStepView: some View {
         Circle()
+            .foregroundColor(progress == .ongoing ? .accentColor : Color(uiColor: .systemGray4))
             .frame(width: indicatorSize)
-            .foregroundColor(Color(uiColor: .systemGray5))
             .overlay {
                 Circle()
-                    .foregroundColor(Color(uiColor: .systemGray3))
-                    .frame(height: 16)
+                    .strokeBorder(.white, lineWidth: 2)
+                    .frame(height: indicatorSize - 4)
             }
     }
 }
@@ -56,8 +56,9 @@ struct StepIndicator: View {
 struct StepIndicator_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            StepIndicator(isCompleted: true, text: "Starting Point", indicatorSize: 32)
-            StepIndicator(isCompleted: false, text: "End Point", indicatorSize: 32)
+            StepIndicator(text: "Starting Point", progress: .completed, indicatorSize: 23)
+            StepIndicator(text: "End Point", progress: .ongoing, indicatorSize: 24)
+            StepIndicator(text: "End Point", progress: .pending, indicatorSize: 24)
         }
         .previewLayout(.sizeThatFits)
     }

@@ -8,52 +8,80 @@
 import SwiftUI
 
 struct CompassView: View {
-    let targetPlace: Place
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var locationManager: LocationDataManager
+    let destinations: [Place]
 
     var body: some View {
-//        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
+        LocationStateView(authorizationStatus: locationManager.authorizationStatus) {
             content
-//        }
+        }
+        .padding()
+        .alert("You've arrived to \(locationManager.targetPlace?.name ?? "No Location")", isPresented: $locationManager.didArrived) {
+            Button("OK", role: .cancel) {
+                locationManager.updateTrip()
+            }
+        }
+        .onChange(of: locationManager.tripFinished) { newValue in
+            if newValue {
+                dismiss()
+            }
+        }
         .onAppear {
-            locationManager.startHeadingUpdates()
-            locationManager.startMonitoringRegion(center: targetPlace.location.toCLLocation(), identifier: targetPlace.name)
+            locationManager.destinations = destinations
+            locationManager.startTrip()
         }
         .onDisappear {
-            locationManager.stopUpdatingHeading()
+            locationManager.stopTrip()
         }
     }
 
     var content: some View {
         VStack {
-            StepperProgressBar(currentStep: 2, totalSteps: 4)
-            Text(locationManager.headingDesc)
-                .font(.title)
+            StepperProgressBar(destinations: locationManager.destinations)
+                .padding(.top, 16)
+            Spacer()
+            Text(locationManager.getTripActionDesc())
+                .font(.body)
+                .lineLimit(2, reservesSpace: true)
                 .padding()
-            Image(systemName: "location.north.fill")
+            Spacer()
+            Image("compass")
                 .resizable()
-                .frame(width: 100, height: 100)
-                .padding()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
                 .rotationEffect(.degrees(locationManager.heading))
-            Text("Current Location: \(locationManager.currentLocation.description)")
+                .overlay(alignment: .top) {
+                    Image("radial")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
+                .overlay {
+                    Image(systemName: "location.north.fill")
+                        .resizable()
+                        .foregroundColor(.accentColor)
+                        .frame(width: 36, height: 36)
+                        .rotationEffect(.degrees(locationManager.heading))
+                }
+            Spacer()
+            Text("\(locationManager.distance.distanceDesc) away")
                 .font(.body)
-                .padding()
-            Text("Target Location: \(locationManager.targetLocation.description)")
-                .font(.body)
-                .padding()
-            Text(locationManager.distance.distanceDesc)
-                .font(.body)
-                .padding()
+            Text("\(locationManager.headingDesc)")
+                .font(.title2)
+                .bold()
+                .padding(.top, 1)
+            Spacer()
         }
         .multilineTextAlignment(.center)
-
     }
 }
 
 
 struct CompassView_Previews: PreviewProvider {
     static var previews: some View {
-        CompassView(targetPlace: Place.dummyPlace[0])
-            .environmentObject(LocationDataManager())
+        CompassView(
+            destinations: [Place.dummyPlace[0], Place.dummyPlace[1]])
+        .environmentObject(LocationDataManager())
     }
 }

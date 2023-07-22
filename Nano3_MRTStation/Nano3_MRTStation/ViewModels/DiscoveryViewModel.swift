@@ -13,12 +13,9 @@ class DiscoveryViewModel: ObservableObject {
     private let stationRepository = StationRepository()
     private var cancellables = Set<AnyCancellable>()
     
-    //perubahan Abner
     @Published var destinations: [Place] = []
     @Published var isSameFloor: Bool = false
-    // ambil escalator turun masukin ke detourPlace
     @Published var detourPlace: Place? = nil
-    
 
     init() {
         fetchData()

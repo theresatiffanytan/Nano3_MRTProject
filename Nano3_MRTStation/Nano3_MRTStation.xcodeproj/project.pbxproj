@@ -17,7 +17,7 @@
 		765881E82A6992150030DAE6 /* Nano3 MRT Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 765881DB2A6992140030DAE6 /* Nano3 MRT Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		765881EF2A6992530030DAE6 /* WatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765881EE2A6992530030DAE6 /* WatchViewModel.swift */; };
 		765881F02A6992530030DAE6 /* WatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765881EE2A6992530030DAE6 /* WatchViewModel.swift */; };
-		765881F12A6993840030DAE6 /* CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A62A62F14D000D18D8 /* CLLocationManagerDelegate.swift */; };
+		765881F12A6993840030DAE6 /* LocationDataManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A62A62F14D000D18D8 /* LocationDataManagerDelegate.swift */; };
 		765881F22A6993870030DAE6 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A52A62F14D000D18D8 /* LocationDataManager.swift */; };
 		765881F42A69942B0030DAE6 /* WatchCompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765881F32A69942B0030DAE6 /* WatchCompassView.swift */; };
 		765881F52A69942B0030DAE6 /* WatchCompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765881F32A69942B0030DAE6 /* WatchCompassView.swift */; };
@@ -37,7 +37,7 @@
 		C49262142A6A817300FF8137 /* PlaceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49262132A6A817300FF8137 /* PlaceDetailsView.swift */; };
 		C49262162A6A85E900FF8137 /* PlaceListMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49262152A6A85E900FF8137 /* PlaceListMap.swift */; };
 		C4C6A3B52A62F14D000D18D8 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A52A62F14D000D18D8 /* LocationDataManager.swift */; };
-		C4C6A3B62A62F14D000D18D8 /* CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A62A62F14D000D18D8 /* CLLocationManagerDelegate.swift */; };
+		C4C6A3B62A62F14D000D18D8 /* LocationDataManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A62A62F14D000D18D8 /* LocationDataManagerDelegate.swift */; };
 		C4C6A3B72A62F14D000D18D8 /* DiscoveryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3A82A62F14D000D18D8 /* DiscoveryViewModel.swift */; };
 		C4C6A3B82A62F14D000D18D8 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3AA2A62F14D000D18D8 /* CompassView.swift */; };
 		C4C6A3B92A62F14D000D18D8 /* LocationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C6A3AB2A62F14D000D18D8 /* LocationStateView.swift */; };
@@ -104,8 +104,9 @@
 		C49262102A6A808200FF8137 /* StepperProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperProgressBar.swift; sourceTree = "<group>"; };
 		C49262132A6A817300FF8137 /* PlaceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsView.swift; sourceTree = "<group>"; };
 		C49262152A6A85E900FF8137 /* PlaceListMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListMap.swift; sourceTree = "<group>"; };
+		C49FEB152A6B4EC900C87AFF /* SimulatedLocations.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SimulatedLocations.gpx; sourceTree = "<group>"; };
 		C4C6A3A52A62F14D000D18D8 /* LocationDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataManager.swift; sourceTree = "<group>"; };
-		C4C6A3A62A62F14D000D18D8 /* CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationManagerDelegate.swift; sourceTree = "<group>"; };
+		C4C6A3A62A62F14D000D18D8 /* LocationDataManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataManagerDelegate.swift; sourceTree = "<group>"; };
 		C4C6A3A82A62F14D000D18D8 /* DiscoveryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryViewModel.swift; sourceTree = "<group>"; };
 		C4C6A3AA2A62F14D000D18D8 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
 		C4C6A3AB2A62F14D000D18D8 /* LocationStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationStateView.swift; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 			children = (
 				0FB4BF042A62EA730009D00C /* Preview Assets.xcassets */,
 				C4EA02512A67747800DF0013 /* MockStationRepository.swift */,
+				C49FEB152A6B4EC900C87AFF /* SimulatedLocations.gpx */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -298,7 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				C4C6A3A52A62F14D000D18D8 /* LocationDataManager.swift */,
-				C4C6A3A62A62F14D000D18D8 /* CLLocationManagerDelegate.swift */,
+				C4C6A3A62A62F14D000D18D8 /* LocationDataManagerDelegate.swift */,
 			);
 			path = LocationManager;
 			sourceTree = "<group>";
@@ -467,7 +469,7 @@
 				C49262142A6A817300FF8137 /* PlaceDetailsView.swift in Sources */,
 				C41A43172A68AE5D000E9B3A /* AddPlaceView.swift in Sources */,
 				765881EF2A6992530030DAE6 /* WatchViewModel.swift in Sources */,
-				C4C6A3B62A62F14D000D18D8 /* CLLocationManagerDelegate.swift in Sources */,
+				C4C6A3B62A62F14D000D18D8 /* LocationDataManagerDelegate.swift in Sources */,
 				765881F42A69942B0030DAE6 /* WatchCompassView.swift in Sources */,
 				C44E1AF92A68A62D00F9D5B0 /* FirestoreManager.swift in Sources */,
 				C4C6A3BC2A62F14D000D18D8 /* PlaceListRow.swift in Sources */,
@@ -498,7 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				765881F12A6993840030DAE6 /* CLLocationManagerDelegate.swift in Sources */,
+				765881F12A6993840030DAE6 /* LocationDataManagerDelegate.swift in Sources */,
 				765881F52A69942B0030DAE6 /* WatchCompassView.swift in Sources */,
 				76F1C0472A699583009786E0 /* location.swift in Sources */,
 				765881E02A6992140030DAE6 /* ContentView.swift in Sources */,

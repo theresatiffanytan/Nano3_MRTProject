@@ -11,6 +11,7 @@ struct PlaceDetailsView: View {
     @EnvironmentObject var discoveryVM: DiscoveryViewModel
     // MARK: Temporary
     @State private var selectedDetour: Place.PlaceCategory.AccessibilityType = .escalator
+    @State private var showDirection = false
     let place: Place
 
     var body: some View {
@@ -36,10 +37,14 @@ struct PlaceDetailsView: View {
                 accessSection
                 Spacer()
                 directionBtn
-                    .padding(.bottom, 16)
+                    .padding(.bottom, 8)
             }
             .padding()
-            .navigationBarTitleDisplayMode(.inline)
+        }
+        .sheet(isPresented: $showDirection) {
+            CompassView(
+                destinations: [Place.dummyPlace[0], Place.dummyPlace[1]])
+                .presentationDetents([.fraction(0.8), .large])
         }
     }
 
@@ -103,7 +108,7 @@ struct PlaceDetailsView: View {
     var detailSection: some View {
         VStack(alignment: .leading) {
             Text("Details")
-                .font(.callout)
+                .font(.body)
                 .fontWeight(.semibold)
             VStack(alignment: .leading){
                 Text("Operational Hours")
@@ -116,8 +121,7 @@ struct PlaceDetailsView: View {
                     Spacer()
                     Text("10:00 AM - 09:00 PM")
                 }
-                .font(.callout)
-                .fontWeight(.medium)
+                .font(.subheadline)
                 .padding(.top, 2)
             }
             .padding(.horizontal, 16)
@@ -128,7 +132,9 @@ struct PlaceDetailsView: View {
     }
 
     var directionBtn: some View {
-        NavigationLink(destination: CompassView(targetPlace: place)) {
+        Button(action: {
+            showDirection.toggle()
+        }) {
             Text("Start Direction")
                 .font(.callout)
                 .fontWeight(.medium)

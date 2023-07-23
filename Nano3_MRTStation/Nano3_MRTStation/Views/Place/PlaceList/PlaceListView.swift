@@ -23,8 +23,8 @@ struct PlaceListView: View {
     var body: some View {
         VStack{
             Picker("View Type", selection: $viewType){
-                Text("List").tag(ViewType.ListView)
-                Text("Map View").tag(ViewType.MapView)
+                Text("List").tag(ViewType.ListView).tag("")
+                Text("Map View").tag(ViewType.MapView).tag("")
             }
             .pickerStyle(.segmented)
             switch viewType {
@@ -50,7 +50,7 @@ struct PlaceListView: View {
             locationManager.validateLocationAuthorizationStatus()
         }
         .onDisappear {
-            locationManager.stopUpdatingLocation()
+            locationManager.stopTrip()
         }
     }
 }

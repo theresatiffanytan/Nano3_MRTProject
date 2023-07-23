@@ -21,9 +21,8 @@ struct PlaceCategoryGridView: View {
         VStack(alignment: .leading) {
             HStack {
                 Picker("Station", selection: $discoveryVM.selectedStation) {
-                    ForEach(discoveryVM.stations) {station in
-                        Text(station.name)
-                            .tag(station)
+                    ForEach(discoveryVM.stations) { station in
+                        Text(station.name).tag(station)
                     }
                 }
                 .padding(.leading, 14)
@@ -49,7 +48,7 @@ struct PlaceCategoryGridView: View {
         }
         .padding()
         .onAppear {
-            locationManager.stopUpdatingLocation()
+            locationManager.stopTrip()
         }
     }
 }

@@ -11,7 +11,7 @@ struct InfoItem: View {
     let image: String
     let title: String
     let text: String
-
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         HStack{
             Image(systemName: image)
@@ -20,7 +20,7 @@ struct InfoItem: View {
                 .background(
                     Circle()
                         .frame(width: 30, height: 30)
-                        .foregroundColor(Color("CircleColor")))
+                        .foregroundColor(colorScheme == .dark ? .white.opacity(0.1) : Color("CircleColor")))
             VStack(alignment: .leading){
                 Text(title)
                     .font(.caption2)

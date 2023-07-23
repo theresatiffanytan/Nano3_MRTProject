@@ -70,7 +70,7 @@ struct PlaceDetailsView: View {
             discoveryVM.clearDestinations()
         }
     }
-
+    @Environment(\.colorScheme) var colorScheme
     var infoSection: some View {
         HStack{
             InfoItem(
@@ -91,7 +91,7 @@ struct PlaceDetailsView: View {
                     .background(
                         Circle()
                             .frame(width: 30, height: 30)
-                            .foregroundColor(Color("CircleColor")))
+                            .foregroundColor(colorScheme == .dark ? .white.opacity(0.1) : Color("CircleColor")))
                 VStack(alignment: .leading){
                     Text("Status")
                         .font(.caption2)
@@ -117,8 +117,8 @@ struct PlaceDetailsView: View {
                     .font(.footnote)
                     .fontWeight(.medium)
                     .foregroundColor(Color(uiColor: .systemGray))
-                AccessOptPicker(selectedDetour: $selectedDetour)
-                    .padding(.top, 2)
+//                AccessOptPicker(selectedDetour: $selectedDetour)
+//                    .padding(.top, 2)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)

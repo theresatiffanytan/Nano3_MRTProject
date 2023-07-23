@@ -12,13 +12,9 @@ class DiscoveryViewModel: ObservableObject {
     @Published var selectedStation: Station?
     private let stationRepository = StationRepository()
     private var cancellables = Set<AnyCancellable>()
-    
-    
     @Published var destinations: [Place] = []
     @Published var isSameFloor: Bool = false
     @Published var detourPlace: Place? = nil
-    
-    
     
     init() {
         fetchData()

@@ -16,7 +16,6 @@ struct PlaceCategoryGridItem: View {
                 RoundedRectangle(cornerRadius: 12)
                     .frame(width: 106, height: 106)
                     .foregroundColor(Color("LightBlue"))
-                
                 Image(image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)

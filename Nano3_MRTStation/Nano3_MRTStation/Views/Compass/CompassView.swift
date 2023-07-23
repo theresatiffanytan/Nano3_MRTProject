@@ -53,7 +53,6 @@ struct CompassView: View {
                 Text("Send to watch")
             }
             Spacer()
-           
             Image("compass")
                 .resizable()
                 .scaledToFit()
@@ -79,9 +78,6 @@ struct CompassView: View {
                 .font(.title2)
                 .bold()
                 .padding(.top, 1)
-//            Spacer()
-       
-//            Spacer()
         }
         .multilineTextAlignment(.center)
     }

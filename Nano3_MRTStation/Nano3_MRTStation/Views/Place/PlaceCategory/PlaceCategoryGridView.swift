@@ -49,7 +49,7 @@ struct PlaceCategoryGridView: View {
         }
         .padding()
         .onAppear {
-            locationManager.stopUpdatingLocation()
+            locationManager.stopTrip()
         }
     }
 }

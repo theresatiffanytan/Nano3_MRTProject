@@ -50,7 +50,7 @@ struct PlaceListView: View {
             locationManager.validateLocationAuthorizationStatus()
         }
         .onDisappear {
-            locationManager.stopUpdatingLocation()
+            locationManager.stopTrip()
         }
     }
 }

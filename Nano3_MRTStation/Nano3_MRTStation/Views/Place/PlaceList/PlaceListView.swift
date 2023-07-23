@@ -14,7 +14,7 @@ struct PlaceListView: View {
     @EnvironmentObject var locationManager: LocationDataManager
     @State var viewType: ViewType = ViewType.ListView
     let category: Place.PlaceCategory
-
+    
     func setTabStyle() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(named: "AccentColor")
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
@@ -33,19 +33,10 @@ struct PlaceListView: View {
                     ForEach(discoveryVM.getPlacesFiltered(by: category), id: \.self) { place in
                         NavigationLink(
                             destination: PlaceDetailsView(place: place)
-
-                                ) {
-
-                                .onAppear{
-                                    discoveryVM.appendDestination(to: place)
-                                    watchvm.sendDestionationToWatch([place , Place.dummyPlace[1]])
-                                }
-                                .onDisappear{
-                                    discoveryVM.clearDestination()
-                                }) {
-                                    PlaceListRow(place: place)
-                                        .padding(.vertical, 4)
-                                }
+                        ) {
+                            PlaceListRow(place: place)
+                                .padding(.vertical, 4)
+                        }
                     }
                 }
             case .MapView:

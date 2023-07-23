@@ -89,6 +89,8 @@ extension WatchViewModel: WCSessionDelegate {
             
         }
         
+        receivedDestionation.removeAll()
+        
         
         
     }

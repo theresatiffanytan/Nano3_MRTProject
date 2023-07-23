@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlaceDetailsView: View {
     @EnvironmentObject var discoveryVM: DiscoveryViewModel
+    @ObservedObject var watchvm = WatchViewModel.shared
     // MARK: Temporary
     @State private var selectedDetour: Place.PlaceCategory.AccessibilityType = .escalator
     @State private var showDirection = false
@@ -28,13 +29,21 @@ struct PlaceDetailsView: View {
                         .padding(.top, -8)
                 }
                 infoSection
-                // TODO: Change image with place.image
-                Image("indomaret")
-                    .frame(height: 200)
-                    .cornerRadius(8)
+                AsyncImage(url: URL(string: place.photo)){ image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                }placeholder: {
+                    Color(uiColor: .systemGray4)
+                        .shimmering()
+                }
+                .frame(height: 200)
+                .cornerRadius(8)
                 detailSection
                 // TODO: Add !isSameFloor condition
-                accessSection
+                if !discoveryVM.isSameFloor {
+                    accessSection
+                }
                 Spacer()
                 directionBtn
                     .padding(.bottom, 8)
@@ -43,8 +52,22 @@ struct PlaceDetailsView: View {
         }
         .sheet(isPresented: $showDirection) {
             CompassView(
-                destinations: [Place.dummyPlace[0], Place.dummyPlace[1]])
-                .presentationDetents([.fraction(0.8), .large])
+                destinations: discoveryVM.destinations)
+            .onAppear{
+                discoveryVM.removeDetour()
+            }
+            .presentationDetents([.fraction(0.8), .large])
+        }
+        .onChange(of: selectedDetour ){ detour in
+            discoveryVM.updateNearestDetour(type: detour)
+        }
+        .onAppear{
+            discoveryVM.appendDestination(to: place)
+            watchvm.sendPlaceToWatch(place)
+            discoveryVM.updateNearestDetour(type: selectedDetour)
+        }
+        .onDisappear{
+            discoveryVM.clearDestinations()
         }
     }
 
@@ -133,6 +156,7 @@ struct PlaceDetailsView: View {
 
     var directionBtn: some View {
         Button(action: {
+            discoveryVM.appendDetour()
             showDirection.toggle()
         }) {
             Text("Start Direction")

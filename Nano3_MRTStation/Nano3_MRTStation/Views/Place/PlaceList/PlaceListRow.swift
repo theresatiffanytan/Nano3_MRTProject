@@ -9,15 +9,19 @@ import SwiftUI
 
 struct PlaceListRow: View {
     let place: Place
-
+    
     var body: some View {
         HStack(alignment: .top) {
-            // TODO: Change image with place.image
-            Image("2")
-                .resizable()
-                .frame(width: 110, height: 80)
-                .scaledToFit()
-                .cornerRadius(8)
+            AsyncImage(url: URL(string: place.photo)){ image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            }placeholder: {
+                Color(uiColor: .systemGray4)
+                    .shimmering()
+            }
+            .frame(width: 110, height: 80)
+            .cornerRadius(8)
             VStack(alignment: .leading) {
                 Text(place.name)
                     .font(.callout)
@@ -45,7 +49,7 @@ struct PlaceListRow: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
         .background(RoundedRectangle(cornerRadius: 8)
-        .foregroundColor(Color(uiColor: .systemGray6)))
+            .foregroundColor(Color(uiColor: .systemGray6)))
     }
 }
 

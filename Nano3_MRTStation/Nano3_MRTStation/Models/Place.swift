@@ -15,8 +15,10 @@ struct Place: Hashable, Codable {
     let category: PlaceCategory
     let status: PlaceStatus
     let location: Location
+    
     var distance: Double = 0
     var progress: PlaceProgress = .pending
+    
 
     enum PlaceCategory: String, Codable, CaseIterable {
         case accessibility = "Accessibility"
@@ -56,9 +58,9 @@ struct Place: Hashable, Codable {
         }
 
         enum AccessibilityType: String {
-            case escalator = "Escalator"
-            case lift = "Lift"
-            case stairs = "Stairs"
+            case escalator = "escalator"
+            case lift = "lift"
+            case stairs = "stairs"
         }
     }
     
@@ -99,6 +101,20 @@ struct Place: Hashable, Codable {
 }
 
 extension Place {
+    
+    func getAccessibilityType() -> Place.PlaceCategory.AccessibilityType?{
+        let name = self.name.lowercased()
+        if name.contains("escalator") {
+            return .escalator
+        }else if name.contains("lift") {
+            return .lift
+        }else if name.contains("stair") {
+            return .stairs
+        }else {
+            return nil
+        }
+    }
+    
     static let dummyPlace = [
         Place(
             name: "Apple Campus",
@@ -158,3 +174,7 @@ extension Place {
         ),
     ]
 }
+
+
+
+

@@ -12,7 +12,6 @@ enum ViewType: String { case ListView, MapView}
 struct PlaceListView: View {
     @EnvironmentObject var discoveryVM: DiscoveryViewModel
     @EnvironmentObject var locationManager: LocationDataManager
-    @ObservedObject var watchvm = WatchViewModel.shared
     @State var viewType: ViewType = ViewType.ListView
     let category: Place.PlaceCategory
 
@@ -34,6 +33,9 @@ struct PlaceListView: View {
                     ForEach(discoveryVM.getPlacesFiltered(by: category), id: \.self) { place in
                         NavigationLink(
                             destination: PlaceDetailsView(place: place)
+
+                                ) {
+
                                 .onAppear{
                                     discoveryVM.appendDestination(to: place)
                                     watchvm.sendDestionationToWatch([place , Place.dummyPlace[1]])

@@ -50,6 +50,7 @@
 		C4EA024B2A67629F00DF0013 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA024A2A67629F00DF0013 /* FirebaseFirestoreSwift */; };
 		C4EA02522A67747800DF0013 /* MockStationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA02512A67747800DF0013 /* MockStationRepository.swift */; };
 		C4FB5F412A6AE3F200833B37 /* InfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB5F402A6AE3F200833B37 /* InfoItem.swift */; };
+		C4FBD91C2A6CE90F0092A757 /* ShimmerEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FBD91B2A6CE90F0092A757 /* ShimmerEffect.swift */; };
 		DD0748702A696E8500AF5AFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD07486F2A696E8500AF5AFF /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -117,7 +118,9 @@
 		C4C6A3B42A62F14D000D18D8 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		C4EA02512A67747800DF0013 /* MockStationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStationRepository.swift; sourceTree = "<group>"; };
 		C4FB5F402A6AE3F200833B37 /* InfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoItem.swift; sourceTree = "<group>"; };
+		C4FBD91B2A6CE90F0092A757 /* ShimmerEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffect.swift; sourceTree = "<group>"; };
 		DD07486F2A696E8500AF5AFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DD750F9E2A6C17A800DE972F /* SimulatedLebakBulus.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SimulatedLebakBulus.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,7 @@
 				0FB4BF042A62EA730009D00C /* Preview Assets.xcassets */,
 				C4EA02512A67747800DF0013 /* MockStationRepository.swift */,
 				C49FEB152A6B4EC900C87AFF /* SimulatedLocations.gpx */,
+				DD750F9E2A6C17A800DE972F /* SimulatedLebakBulus.gpx */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -315,6 +319,7 @@
 		C4C6A3A92A62F14D000D18D8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4FBD91A2A6CE8FE0092A757 /* Modifier */,
 				C492620B2A6A803100FF8137 /* Stepper */,
 				C4C6A3B02A62F14D000D18D8 /* ContentView.swift */,
 				C41A431A2A68AEDF000E9B3A /* Compass */,
@@ -344,6 +349,14 @@
 				C44E1AFD2A68A88300F9D5B0 /* Compass.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C4FBD91A2A6CE8FE0092A757 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				C4FBD91B2A6CE90F0092A757 /* ShimmerEffect.swift */,
+			);
+			path = Modifier;
 			sourceTree = "<group>";
 		};
 		DD5B78B22A6A12610022572E /* Shared */ = {
@@ -484,6 +497,7 @@
 				C4C6A3BB2A62F14D000D18D8 /* PlaceListView.swift in Sources */,
 				C4FB5F412A6AE3F200833B37 /* InfoItem.swift in Sources */,
 				C49262112A6A808200FF8137 /* StepperProgressBar.swift in Sources */,
+				C4FBD91C2A6CE90F0092A757 /* ShimmerEffect.swift in Sources */,
 				C4C6A3B52A62F14D000D18D8 /* LocationDataManager.swift in Sources */,
 				C4C6A3B82A62F14D000D18D8 /* CompassView.swift in Sources */,
 				C4EA02522A67747800DF0013 /* MockStationRepository.swift in Sources */,

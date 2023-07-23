@@ -117,8 +117,8 @@ struct PlaceDetailsView: View {
                     .font(.footnote)
                     .fontWeight(.medium)
                     .foregroundColor(Color(uiColor: .systemGray))
-//                AccessOptPicker(selectedDetour: $selectedDetour)
-//                    .padding(.top, 2)
+                AccessOptPicker(selectedDetour: $selectedDetour)
+                    .padding(.top, 2)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)

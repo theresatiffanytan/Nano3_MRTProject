@@ -26,7 +26,7 @@ struct PlaceListMap: View {
         ZStack{
             
             Color.clear
-            Image("maps")
+            Image("Maps")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             //                .padding()

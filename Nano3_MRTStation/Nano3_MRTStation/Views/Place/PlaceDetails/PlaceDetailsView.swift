@@ -29,21 +29,13 @@ struct PlaceDetailsView: View {
                         .padding(.top, -8)
                 }
                 infoSection
-                // TODO: Change image with place.image
                 AsyncImage(url: URL(string: place.photo)){ image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                 }placeholder: {
                     Color(uiColor: .systemGray4)
-                                .overlay {
-                                    Image(systemName: "circle.dotted")
-                                        .font(.system(size: 40, weight: .bold))
-                                        .foregroundColor(.white)
-                                        .rotationEffect(.degrees(loadingRotation), anchor: .center)
-                                        .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false), value: loadingRotation)
-                                        
-                                }
+                        .shimmering()
                 }
                 .frame(height: 200)
                 .cornerRadius(8)
@@ -64,13 +56,12 @@ struct PlaceDetailsView: View {
             .onAppear{
                 discoveryVM.removeDetour()
             }
-                .presentationDetents([.fraction(0.8), .large])
+            .presentationDetents([.fraction(0.8), .large])
         }
         .onChange(of: selectedDetour ){ detour in
             discoveryVM.updateNearestDetour(type: detour)
         }
         .onAppear{
-            startLoadingAnimation()
             discoveryVM.appendDestination(to: place)
             watchvm.sendPlaceToWatch(place)
             discoveryVM.updateNearestDetour(type: selectedDetour)
@@ -178,23 +169,6 @@ struct PlaceDetailsView: View {
                 .cornerRadius(8)
         }
     }
-    
-    @State private var loadingRotation: Double = 0
-       private let rotationStep: Double = 360
-       
-       // You can start the rotation in the .onAppear() modifier or based on other triggers in your app
-       // For example:
-       /*
-       .onAppear {
-           startLoadingAnimation()
-       }
-       */
-       
-       private func startLoadingAnimation() {
-           withAnimation {
-               loadingRotation += rotationStep
-           }
-       }
 }
 
 

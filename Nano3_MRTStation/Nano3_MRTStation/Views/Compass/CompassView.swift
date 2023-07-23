@@ -47,11 +47,7 @@ struct CompassView: View {
                 .font(.body)
                 .lineLimit(2, reservesSpace: true)
                 .padding()
-            Button{
-                watchViewModel.sendDestionationToWatch(destinations)
-            }label: {
-                Text("Send to watch")
-            }
+           
             Spacer()
             Image("compass")
                 .resizable()
@@ -78,6 +74,19 @@ struct CompassView: View {
                 .font(.title2)
                 .bold()
                 .padding(.top, 1)
+            Spacer()
+            Button{
+                watchViewModel.sendDestionationToWatch(destinations)
+            }label: {
+                RoundedRectangle(cornerRadius: 15)
+                    .frame(width: 340 , height: 40)
+                    .foregroundColor(Color("ComponentColor"))
+                    .overlay {
+                        Text("Send to watch")
+                            .foregroundColor(.white)
+                    }
+                
+            }
         }
         .multilineTextAlignment(.center)
     }

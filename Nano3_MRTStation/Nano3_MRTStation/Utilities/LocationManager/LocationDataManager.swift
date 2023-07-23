@@ -132,7 +132,7 @@ class LocationDataManager: NSObject, ObservableObject{
     }
 
     func stopTrip() {
-        stopUpdatingLocation()
+//        stopUpdatingLocation()
         stopUpdatingHeading()
 #if os(iOS)
         stopMonitoringRegion()

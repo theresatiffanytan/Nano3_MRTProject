@@ -10,26 +10,26 @@ import SwiftUI
 struct PlaceDetailsView: View {
     @EnvironmentObject var discoveryVM: DiscoveryViewModel
     @ObservedObject var watchvm = WatchViewModel.shared
-    // MARK: Temporary
     @State private var selectedDetour: Place.PlaceCategory.AccessibilityType = .escalator
     @State private var showDirection = false
-    let place: Place
+    let places: [Place]
+    let targetPlace: Place
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 VStack(alignment: .leading) {
-                    Text(place.category.rawValue)
+                    Text(targetPlace.category.rawValue)
                         .font(.footnote)
                         .fontWeight(.medium)
                         .foregroundColor(Color(uiColor: .systemGray2))
-                    Text(place.name)
+                    Text(targetPlace.name)
                         .font(.title2)
                         .bold()
                         .padding(.top, -8)
                 }
                 infoSection
-                AsyncImage(url: URL(string: place.photo)){ image in
+                AsyncImage(url: URL(string: targetPlace.photo)){ image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -59,12 +59,12 @@ struct PlaceDetailsView: View {
             .presentationDetents([.fraction(0.8), .large])
         }
         .onChange(of: selectedDetour ){ detour in
-            discoveryVM.updateNearestDetour(type: detour)
+            discoveryVM.updateNearestDetour(type: detour, from: places)
         }
         .onAppear{
-            discoveryVM.appendDestination(to: place)
+            discoveryVM.appendDestination(to: targetPlace)
 //            watchvm.sendPlaceToWatch(place)
-            discoveryVM.updateNearestDetour(type: selectedDetour)
+            discoveryVM.updateNearestDetour(type: selectedDetour, from: places)
         }
         .onDisappear{
             discoveryVM.clearDestinations()
@@ -76,13 +76,13 @@ struct PlaceDetailsView: View {
             InfoItem(
                 image: "mappin.and.ellipse",
                 title: "Location",
-                text: place.location.formattedFloorLevel())
+                text: targetPlace.location.formattedFloorLevel())
             Spacer()
             // TODO: Create formatted place distance extension
             InfoItem(
                 image: "location",
                 title: "Distance",
-                text: place.distance.distanceDesc)
+                text: targetPlace.distance.distanceDesc)
             Spacer()
             HStack{
                 Image(systemName: "info.circle")
@@ -96,10 +96,10 @@ struct PlaceDetailsView: View {
                     Text("Status")
                         .font(.caption2)
                         .foregroundColor(Color(uiColor: .systemGray))
-                    Text(place.status.rawValue)
+                    Text(targetPlace.status.rawValue)
                         .font(.footnote)
                         .fontWeight(.medium)
-                        .foregroundColor(place.status.color)
+                        .foregroundColor(targetPlace.status.color)
                 }
                 .padding(.leading, 8)
             }
@@ -113,12 +113,12 @@ struct PlaceDetailsView: View {
                 .font(.callout)
                 .fontWeight(.semibold)
             VStack(alignment: .center) {
-                Text("Your current floor level is different. Please select the access option to reach the \(place.location.formattedFloorLevel()).")
+                Text("Your current floor level is different. Please select the access option to reach the \(targetPlace.location.formattedFloorLevel()).")
                     .font(.footnote)
                     .fontWeight(.medium)
                     .foregroundColor(Color(uiColor: .systemGray))
-//                AccessOptPicker(selectedDetour: $selectedDetour)
-//                    .padding(.top, 2)
+                AccessOptPicker(selectedDetour: $selectedDetour)
+                    .padding(.top, 2)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
@@ -174,7 +174,7 @@ struct PlaceDetailsView: View {
 
 struct PlaceDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceDetailsView(place: Place.dummyPlace[0])
+        PlaceDetailsView(places: [Place.dummyPlace[0], Place.dummyPlace[1]], targetPlace: Place.dummyPlace[0])
             .environmentObject(DiscoveryViewModel())
     }
 }

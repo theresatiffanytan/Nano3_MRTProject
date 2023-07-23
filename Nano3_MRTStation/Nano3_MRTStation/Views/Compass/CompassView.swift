@@ -47,7 +47,13 @@ struct CompassView: View {
                 .font(.body)
                 .lineLimit(2, reservesSpace: true)
                 .padding()
+            Button{
+                watchViewModel.sendDestionationToWatch(destinations)
+            }label: {
+                Text("Send to watch")
+            }
             Spacer()
+           
             Image("compass")
                 .resizable()
                 .scaledToFit()
@@ -73,12 +79,9 @@ struct CompassView: View {
                 .font(.title2)
                 .bold()
                 .padding(.top, 1)
-            Button{
-                watchViewModel.sendDestionationToWatch(destinations)
-            }label: {
-                Text("Send to watch")
-            }
-            Spacer()
+//            Spacer()
+       
+//            Spacer()
         }
         .multilineTextAlignment(.center)
     }

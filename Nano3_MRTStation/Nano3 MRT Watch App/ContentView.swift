@@ -32,8 +32,7 @@ struct ContentView: View {
                     .frame(height: 51)
                     .position(x: geometry.size.width / 2 , y: geometry.size.height * 0.95)
                     .fullScreenCover(isPresented: $isShowing) {
-//                        WatchCompassView(isShowing: $isShowing, targetplace:receivedPlace)
-                        WatchCompassView(isShowing: $isShowing, destionations: watchViewModel.receivedDestionation)
+                        WatchCompassView(isShowing: $isShowing, destinations: watchViewModel.receivedDestionation)
                     }
                     
                     

@@ -97,6 +97,7 @@ struct Place: Hashable, Codable {
         case category
         case status
         case location
+        
     }
 }
 

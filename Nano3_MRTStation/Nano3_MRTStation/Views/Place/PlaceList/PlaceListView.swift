@@ -33,7 +33,16 @@ struct PlaceListView: View {
                     ForEach(discoveryVM.getPlacesFiltered(by: category), id: \.self) { place in
                         NavigationLink(
                             destination: PlaceDetailsView(place: place)
+
                                 ) {
+
+                                .onAppear{
+                                    discoveryVM.appendDestination(to: place)
+                                    watchvm.sendDestionationToWatch([place , Place.dummyPlace[1]])
+                                }
+                                .onDisappear{
+                                    discoveryVM.clearDestination()
+                                }) {
                                     PlaceListRow(place: place)
                                         .padding(.vertical, 4)
                                 }

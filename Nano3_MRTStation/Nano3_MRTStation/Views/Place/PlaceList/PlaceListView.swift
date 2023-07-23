@@ -14,6 +14,7 @@ struct PlaceListView: View {
     @EnvironmentObject var locationManager: LocationDataManager
     @State private var viewType: ViewType = ViewType.ListView
     @State private var places: [Place] = []
+    @State private var accessiblityPlaces: [Place] = []
     let category: Place.PlaceCategory
     
     func setTabStyle() {
@@ -33,7 +34,7 @@ struct PlaceListView: View {
                 ScrollView {
                     ForEach(places, id: \.self) { place in
                         NavigationLink(
-                            destination: PlaceDetailsView(places: discoveryVM.getPlacesFiltered(by: .accessibility, from: locationManager.currentLocation), targetPlace: place)
+                            destination: PlaceDetailsView(places: accessiblityPlaces, targetPlace: place)
                         ) {
                             PlaceListRow(place: place)
                                 .padding(.vertical, 4)
@@ -49,6 +50,7 @@ struct PlaceListView: View {
         .onAppear {
             setTabStyle()
             places = discoveryVM.getPlacesFiltered(by: category, from: locationManager.currentLocation)
+            accessiblityPlaces = discoveryVM.getPlacesFiltered(by: .accessibility, from: locationManager.currentLocation)
         }
     }
 }

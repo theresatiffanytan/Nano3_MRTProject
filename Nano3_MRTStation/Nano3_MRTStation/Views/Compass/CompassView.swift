@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import WatchConnectivity
 
 struct CompassView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var locationManager: LocationDataManager
+    @ObservedObject private var watchViewModel = WatchViewModel.shared
     let destinations: [Place]
 
     var body: some View {
@@ -71,6 +73,11 @@ struct CompassView: View {
                 .font(.title2)
                 .bold()
                 .padding(.top, 1)
+            Button{
+                watchViewModel.sendDestionationToWatch(destinations)
+            }label: {
+                Text("Send to watch")
+            }
             Spacer()
         }
         .multilineTextAlignment(.center)

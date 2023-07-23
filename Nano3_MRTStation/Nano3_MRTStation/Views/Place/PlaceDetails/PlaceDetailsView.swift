@@ -63,7 +63,7 @@ struct PlaceDetailsView: View {
         }
         .onAppear{
             discoveryVM.appendDestination(to: place)
-            watchvm.sendPlaceToWatch(place)
+//            watchvm.sendPlaceToWatch(place)
             discoveryVM.updateNearestDetour(type: selectedDetour)
         }
         .onDisappear{

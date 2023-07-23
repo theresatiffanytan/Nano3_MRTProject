@@ -53,7 +53,7 @@ struct Place: Hashable, Codable {
             case .disability:
                 return "disability"
             case .exit:
-                return "disability"
+                return "exit"
             }
         }
 

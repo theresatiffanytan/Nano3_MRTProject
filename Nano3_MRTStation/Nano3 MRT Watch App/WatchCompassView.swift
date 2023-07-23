@@ -44,10 +44,12 @@ struct WatchCompassView: View {
         VStack {
             
             Spacer()
+            ScrollView{
                 Text(locationManager.getTripActionDesc())
                     .font(.system(size: 14))
-                    .frame(maxWidth: 100)
-                    .lineLimit(2)
+                    
+             
+            }.frame(width: 160, height: 38)
             Spacer()
             Image("compass")
                 .resizable()
@@ -68,12 +70,15 @@ struct WatchCompassView: View {
                         .rotationEffect(.degrees(locationManager.heading))
                 }
             Spacer()
-            VStack{
+        
                 Text("\(locationManager.distance.distanceDesc) away")
                     .font(.system(size: 12))
-                Text("\(locationManager.headingDesc)")
-                    .font(.system(size: 14))
-            }
+                ScrollView{
+                    Text("\(locationManager.headingDesc)")
+                        .font(.system(size: 14))
+                }.frame(width: 160, height: 38)
+            
+            Spacer()
             
         }
         .multilineTextAlignment(.center)

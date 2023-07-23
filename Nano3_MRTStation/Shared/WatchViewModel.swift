@@ -14,6 +14,7 @@ final class WatchViewModel: NSObject, ObservableObject {
     static let shared = WatchViewModel()
 //    @Published var receivedPlace: Place? = nil
     @Published var receivedPlace: Place? = nil
+    @Published var receivedDestionation : [Place] = []
     
     private override init() {
         super.init()
@@ -62,6 +63,36 @@ extension WatchViewModel: WCSessionDelegate {
         }
     }
     
+    func sendDestionationToWatch(_ destination: [Place]){
+        for place in destination {
+            let placeData: [String: Any] = [
+                "name": place.name,
+                "description": place.description,
+                "photo": place.photo,
+                "category": place.category.rawValue,
+                "status" : place.status.rawValue,
+                "location": [
+                    "latitude": place.location.latitude,
+                    "longitude": place.location.longitude,
+                    "altitude": place.location.altitude
+                ]
+            ]
+            
+            if WCSession.default.isReachable{
+                WCSession.default.sendMessage(placeData, replyHandler: nil){
+                    error in print("error sending data : \(error)")
+                
+                }
+            }else{
+                print("Connection not reachable")
+            }
+            
+        }
+        
+        
+        
+    }
+    
     func sendMessage() {
         if WCSession.default.isReachable {
             let message = ["action": "callToAction"]
@@ -90,10 +121,16 @@ extension WatchViewModel: WCSessionDelegate {
            let longitude = locationData["longitude"] as? Double {
             
             DispatchQueue.main.async {
+                if self.receivedDestionation.count == 2 {
+                    self.receivedDestionation.removeAll()
+                }
+               
                 let location = Location(latitude: latitude, longitude: longitude, altitude: altitude)
 //                let place = Place(name: name, description: description, photo: photo, category: category, location: location)
                 let place = Place(name: name, description: description, photo: photo, category: category, status: status, location: location)
-                self.receivedPlace = place
+//                self.receivedPlace = place
+                self.receivedDestionation.append(place)
+                
                 
                 
             }

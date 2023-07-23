@@ -12,7 +12,8 @@ struct WatchCompassView: View {
     @ObservedObject var WatchVM = WatchViewModel.shared
     @Binding var isShowing : Bool
     @EnvironmentObject var locationManager: LocationDataManager
-    let targetplace : Place
+//    let targetplace : Place
+    let destionations: [Place]
     
     var body: some View {
         
@@ -32,21 +33,41 @@ struct WatchCompassView: View {
     
     var content: some View {
         VStack {
-          
-            Image(systemName: "location.north.fill")
+            Image("compass")
                 .resizable()
-                .frame(width: 50, height: 50)
-                .padding()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
                 .rotationEffect(.degrees(locationManager.heading))
-            Text(locationManager.headingDesc)
-                .font(.system(size: 17))
-                .padding()
-            Text(locationManager.distance.distanceDesc)
-                .font(.system(size: 10))
+                .overlay(alignment: .top) {
+                    Image("radial")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
+                .overlay {
+                    Image(systemName: "location.north.fill")
+                        .resizable()
+                        .foregroundColor(.accentColor)
+                        .frame(width: 20, height: 20)
+                        .rotationEffect(.degrees(locationManager.heading))
+                }
+            Text("\(locationManager.distance.distanceDesc) away")
+                .font(.system(size: 12))
+            Text("\(locationManager.headingDesc)")
+                .font(.system(size: 14))
+            
         }
         .multilineTextAlignment(.center)
+        .onDisappear{
+            WatchVM.receivedDestionation.removeAll()
+        }
         
     }
 }
 
-
+//struct WatchCompassView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WatchCompassView(isShowing: .constant(true), targetplace: Place.dummyPlace[0])
+//            .environmentObject(LocationDataManager())
+//    }
+//}

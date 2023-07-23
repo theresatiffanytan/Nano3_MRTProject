@@ -14,9 +14,9 @@ struct ContentView: View {
         VStack {
           
             GeometryReader { geometry in
-                if let receivedPlace = watchViewModel.receivedPlace {
+                if !watchViewModel.receivedDestionation.isEmpty{
                     
-                    Text(receivedPlace.name)
+                    Text(watchViewModel.receivedDestionation[0].name)
                     .font(.system(size: 20))
                     .multilineTextAlignment(.center)
                     .position(x: geometry.size.width/2 , y: geometry.size.height * 0.4)
@@ -32,7 +32,8 @@ struct ContentView: View {
                     .frame(height: 51)
                     .position(x: geometry.size.width / 2 , y: geometry.size.height * 0.95)
                     .fullScreenCover(isPresented: $isShowing) {
-                        WatchCompassView(isShowing: $isShowing, targetplace:receivedPlace)
+//                        WatchCompassView(isShowing: $isShowing, targetplace:receivedPlace)
+                        WatchCompassView(isShowing: $isShowing, destionations: watchViewModel.receivedDestionation)
                     }
                     
                     

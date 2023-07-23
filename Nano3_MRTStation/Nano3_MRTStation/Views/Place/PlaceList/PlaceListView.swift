@@ -36,7 +36,7 @@ struct PlaceListView: View {
                             destination: PlaceDetailsView(place: place)
                                 .onAppear{
                                     discoveryVM.appendDestination(to: place)
-                                    watchvm.sendPlaceToWatch(place)
+                                    watchvm.sendDestionationToWatch([place , Place.dummyPlace[1]])
                                 }
                                 .onDisappear{
                                     discoveryVM.clearDestination()

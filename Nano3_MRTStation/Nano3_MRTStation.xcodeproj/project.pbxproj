@@ -13,7 +13,6 @@
 		765881DE2A6992140030DAE6 /* Nano3_MRTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765881DD2A6992140030DAE6 /* Nano3_MRTApp.swift */; };
 		765881E02A6992140030DAE6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765881DF2A6992140030DAE6 /* ContentView.swift */; };
 		765881E22A6992150030DAE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 765881E12A6992150030DAE6 /* Assets.xcassets */; };
-		765881E52A6992150030DAE6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 765881E42A6992150030DAE6 /* Preview Assets.xcassets */; };
 		765881E82A6992150030DAE6 /* Nano3 MRT Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 765881DB2A6992140030DAE6 /* Nano3 MRT Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		765881EF2A6992530030DAE6 /* WatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765881EE2A6992530030DAE6 /* WatchViewModel.swift */; };
 		765881F02A6992530030DAE6 /* WatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765881EE2A6992530030DAE6 /* WatchViewModel.swift */; };
@@ -453,7 +452,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				765881E52A6992150030DAE6 /* Preview Assets.xcassets in Resources */,
 				765881E22A6992150030DAE6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

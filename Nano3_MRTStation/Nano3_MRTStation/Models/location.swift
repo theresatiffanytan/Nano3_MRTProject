@@ -17,6 +17,11 @@ struct Location: Hashable, Codable {
 extension Location {
     var floorLevel: Int {
         let floorThresholds: [Double] = [0.0, 10.0, 20.0, 30.0] // Dummy thresholds for floor levels
+        //Threshold elevation ke lantai berikut: 14.28
+//        Elevation lt 1: 14.33
+//        Elevation lt 2: 14.25
+        // 1/33 = 0.03 -> lantai 1
+        // 1/25 = 0.04 -> lantai 2
         let defaultFloorLevel = 0
         for (index, threshold) in floorThresholds.enumerated() {
             if altitude < threshold {

@@ -13,14 +13,17 @@ class DiscoveryViewModel: ObservableObject {
     private let stationRepository = StationRepository()
     private var cancellables = Set<AnyCancellable>()
     
+    
     @Published var destinations: [Place] = []
     @Published var isSameFloor: Bool = false
     @Published var detourPlace: Place? = nil
-
+    
+    
+    
     init() {
         fetchData()
     }
-
+    
     func fetchData() {
         stationRepository.$stations
             .sink { [weak self] fetchedStations in
@@ -29,11 +32,11 @@ class DiscoveryViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-
+    
     func selectStation(_ station: Station) {
         selectedStation = station
     }
-
+    
     func getPlaceCategories() -> [Place.PlaceCategory] {
         guard let selectedStation = selectedStation else {
             return []
@@ -42,37 +45,36 @@ class DiscoveryViewModel: ObservableObject {
         let uniqueCategories = Array(Set(categories))
         return uniqueCategories.sorted(by: { $0.rawValue < $1.rawValue })
     }
-
+    
     func getPlacesFiltered(by category: Place.PlaceCategory) -> [Place] {
         guard let selectedStation = selectedStation else {
             return []
         }
         var filteredPlaces = selectedStation.places.filter { $0.category == category }
-
+        
         filteredPlaces = filteredPlaces.map { place in
             var updatedPlace = place
             updatedPlace.distance = LocationDataManager.shared.currentLocation.distance(from: place.location.toCLLocation())
             return updatedPlace
         }
-
+        
         let sortedPlaces = filteredPlaces.sorted { $0.distance < $1.distance }
-
+        
         return sortedPlaces
     }
-
-
+    
     func addPlaceToStation(stationID: String, place: Place) {
         guard let station = findStationByID(stationID) else {
             print("Station not found")
             return
         }
-
+        
         var updatedStation = station
         updatedStation.places.append(place)
-
+        
         stationRepository.updateStation(updatedStation)
     }
-
+    
     private func findStationByID(_ stationID: String) -> Station? {
         return stations.first { $0.id == stationID }
     }
@@ -84,17 +86,45 @@ class DiscoveryViewModel: ObservableObject {
         updateIsSameFloor()
     }
     
-    func clearDestination() -> () {
+    
+    
+    func clearDestinations() -> () {
         destinations = []
     }
-
+    
+    func removeDetour() -> () {
+        guard destinations.count > 1 else { return }
+        destinations.remove(at: 0)
+    }
+    
     func appendDetour() -> () {
         guard let detour = detourPlace, !isSameFloor else { return }
         destinations.insert(detour, at: 0)
     }
     
     func updateIsSameFloor() -> () {
-        // MARK: -- Problem if the floor level is more than 2
         isSameFloor = LocationDataManager.shared.currentLocation.toLocation().floorLevel == destinations.first?.location.floorLevel
+        //MARK: -_ Temporary change dummyLevel with any floor level
+        let dummyLevel = 3
+        isSameFloor = dummyLevel == destinations.first?.location.floorLevel
+        
+    }
+    
+    func updateNearestDetour(type selectedDetour: Place.PlaceCategory.AccessibilityType) -> () {
+        // Assuming getPlacesFiltered returns an array of Place objects
+        let detours = getPlacesFiltered(by: .accessibility).filter {
+            $0.getAccessibilityType() == selectedDetour
+        }
+
+        guard !detours.isEmpty else {
+            print("No detours available for the selected accessibility type.")
+            return 
+        }
+
+        // Calculate and return the nearest detour based on your desired logic
+        // For example, if you have a user location and want to find the nearest detour, you can implement that logic here.
+
+        // Replace the following line with your logic to find the nearest detour.
+        detourPlace = detours.first
     }
 }

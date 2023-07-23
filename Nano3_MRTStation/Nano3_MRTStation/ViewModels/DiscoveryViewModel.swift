@@ -6,19 +6,16 @@
 //
 
 import Combine
+import CoreLocation
 
 class DiscoveryViewModel: ObservableObject {
     @Published var stations: [Station] = []
     @Published var selectedStation: Station?
     private let stationRepository = StationRepository()
     private var cancellables = Set<AnyCancellable>()
-    
-    
     @Published var destinations: [Place] = []
     @Published var isSameFloor: Bool = false
     @Published var detourPlace: Place? = nil
-    
-    
     
     init() {
         fetchData()
@@ -46,7 +43,8 @@ class DiscoveryViewModel: ObservableObject {
         return uniqueCategories.sorted(by: { $0.rawValue < $1.rawValue })
     }
     
-    func getPlacesFiltered(by category: Place.PlaceCategory) -> [Place] {
+    func getPlacesFiltered(by category: Place.PlaceCategory, from currentLocation: CLLocation) -> [Place] {
+        print("KEPANGGIL")
         guard let selectedStation = selectedStation else {
             return []
         }
@@ -54,7 +52,7 @@ class DiscoveryViewModel: ObservableObject {
         
         filteredPlaces = filteredPlaces.map { place in
             var updatedPlace = place
-            updatedPlace.distance = LocationDataManager.shared.currentLocation.distance(from: place.location.toCLLocation())
+            updatedPlace.distance = currentLocation.distance(from: place.location.toCLLocation())
             return updatedPlace
         }
         
@@ -110,13 +108,11 @@ class DiscoveryViewModel: ObservableObject {
         
     }
     
-    func updateNearestDetour(type selectedDetour: Place.PlaceCategory.AccessibilityType) -> () {
-        // Assuming getPlacesFiltered returns an array of Place objects
-        let detours = getPlacesFiltered(by: .accessibility).filter {
+    func updateNearestDetour(type selectedDetour: Place.PlaceCategory.AccessibilityType, from places: [Place]) -> () {
+        let filteredDetours = places.filter {
             $0.getAccessibilityType() == selectedDetour
         }
-
-        guard !detours.isEmpty else {
+        guard !filteredDetours.isEmpty else {
             print("No detours available for the selected accessibility type.")
             return 
         }
@@ -125,6 +121,6 @@ class DiscoveryViewModel: ObservableObject {
         // For example, if you have a user location and want to find the nearest detour, you can implement that logic here.
 
         // Replace the following line with your logic to find the nearest detour.
-        detourPlace = detours.first
+        detourPlace = filteredDetours.first
     }
 }

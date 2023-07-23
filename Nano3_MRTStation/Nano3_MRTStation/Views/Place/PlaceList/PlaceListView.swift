@@ -12,7 +12,9 @@ enum ViewType: String { case ListView, MapView}
 struct PlaceListView: View {
     @EnvironmentObject var discoveryVM: DiscoveryViewModel
     @EnvironmentObject var locationManager: LocationDataManager
-    @State var viewType: ViewType = ViewType.ListView
+    @State private var viewType: ViewType = ViewType.ListView
+    @State private var places: [Place] = []
+    @State private var accessiblityPlaces: [Place] = []
     let category: Place.PlaceCategory
     
     func setTabStyle() {
@@ -23,16 +25,16 @@ struct PlaceListView: View {
     var body: some View {
         VStack{
             Picker("View Type", selection: $viewType){
-                Text("List").tag(ViewType.ListView)
-                Text("Map View").tag(ViewType.MapView)
+                Text("List").tag(ViewType.ListView).tag("")
+                Text("Map View").tag(ViewType.MapView).tag("")
             }
             .pickerStyle(.segmented)
             switch viewType {
             case .ListView:
                 ScrollView {
-                    ForEach(discoveryVM.getPlacesFiltered(by: category), id: \.self) { place in
+                    ForEach(places, id: \.self) { place in
                         NavigationLink(
-                            destination: PlaceDetailsView(place: place)
+                            destination: PlaceDetailsView(places: accessiblityPlaces, targetPlace: place)
                         ) {
                             PlaceListRow(place: place)
                                 .padding(.vertical, 4)
@@ -47,10 +49,8 @@ struct PlaceListView: View {
         .padding()
         .onAppear {
             setTabStyle()
-            locationManager.validateLocationAuthorizationStatus()
-        }
-        .onDisappear {
-            locationManager.stopUpdatingLocation()
+            places = discoveryVM.getPlacesFiltered(by: category, from: locationManager.currentLocation)
+            accessiblityPlaces = discoveryVM.getPlacesFiltered(by: .accessibility, from: locationManager.currentLocation)
         }
     }
 }

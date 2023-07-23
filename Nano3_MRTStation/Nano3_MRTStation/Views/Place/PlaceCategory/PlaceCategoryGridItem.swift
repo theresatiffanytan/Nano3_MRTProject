@@ -9,14 +9,13 @@ import SwiftUI
 struct PlaceCategoryGridItem: View {
     let image: String
     let name: String
-
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
                     .frame(width: 106, height: 106)
-                    .foregroundColor(Color("LightBlue"))
-                
+                    .foregroundColor(colorScheme == .dark ? .white.opacity(0.1) : Color("LightBlue"))
                 Image(image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)

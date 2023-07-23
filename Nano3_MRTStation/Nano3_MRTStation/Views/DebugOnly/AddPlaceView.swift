@@ -51,14 +51,14 @@ struct AddPlaceView: View {
                     TextField( "Description", text: $desc)
                     Picker("Location", selection: $category) { // 3
                         ForEach(Place.PlaceCategory.allCases, id: \.self) { item in
-                            Text(item.rawValue)
+                            Text(item.rawValue).tag("")
                         }
                     }
                     VStack(alignment: .leading) {
                         Text("Status")
                         Picker("Status", selection: $status) { // 3
                             ForEach(Place.PlaceStatus.allCases, id: \.self) { item in
-                                Text(item.rawValue)
+                                Text(item.rawValue).tag("")
                             }
                         }
                         .pickerStyle(.segmented)

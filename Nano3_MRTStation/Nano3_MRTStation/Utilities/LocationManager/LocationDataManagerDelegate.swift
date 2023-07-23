@@ -11,6 +11,12 @@ import UserNotifications
 extension LocationDataManager: CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         authorizationStatus = status
+//        switch status {
+//        case .authorizedWhenInUse, .authorizedAlways:
+//            startLocationUpdates()
+//        default:
+//            break
+//        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

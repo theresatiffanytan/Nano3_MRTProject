@@ -22,7 +22,7 @@ extension Location {
 //        Elevation lt 2: 14.25
         // 1/33 = 0.03 -> lantai 1
         // 1/25 = 0.04 -> lantai 2
-        let defaultFloorLevel = 0
+        let defaultFloorLevel = 1
         for (index, threshold) in floorThresholds.enumerated() {
             if altitude < threshold {
                 return index + 1

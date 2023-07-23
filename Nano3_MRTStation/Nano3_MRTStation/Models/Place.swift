@@ -58,9 +58,9 @@ struct Place: Hashable, Codable {
         }
 
         enum AccessibilityType: String {
-            case escalator = "Escalator"
-            case lift = "Lift"
-            case stairs = "Stairs"
+            case escalator = "escalator"
+            case lift = "lift"
+            case stairs = "stairs"
         }
     }
     

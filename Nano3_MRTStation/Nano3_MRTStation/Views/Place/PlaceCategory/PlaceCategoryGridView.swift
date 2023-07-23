@@ -48,7 +48,7 @@ struct PlaceCategoryGridView: View {
         }
         .padding()
         .onAppear {
-            locationManager.stopTrip()
+            locationManager.validateLocationAuthorizationStatus()
         }
     }
 }
